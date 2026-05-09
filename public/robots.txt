@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://fuye-seo.vercel.app/sitemap.xml
