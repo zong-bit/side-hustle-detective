@@ -39,7 +39,9 @@ export default function handler(req, res) {
       const posts = JSON.parse(content);
       const platform = file.includes('tieba') ? 'tieba' : 
                        file.includes('zhihu') ? 'zhihu' : 
-                       file.includes('xiaohongshu') ? 'xiaohongshu' : 'other';
+                       file.includes('xiaohongshu') ? 'xiaohongshu' :
+                       file.includes('bilibili') ? 'bilibili' :
+                       file.includes('hupu') ? 'hupu' : 'other';
       
       for (const p of posts) {
         const text = (p.title + ' ' + (p.snippet || p.content || '')).toLowerCase();

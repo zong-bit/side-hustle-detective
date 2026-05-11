@@ -96,11 +96,18 @@ export default function PostDetail() {
 
   const plat = platformInfo[post.platform] || platformInfo.tieba;
 
+  // Generate meta description from content
+  const rawDesc = post.snippet || post.description || post.content || '';
+  const cleanDesc = rawDesc.replace(/\n/g, ' ').replace(/<[^>]*>/g, '').trim();
+  const metaDesc = cleanDesc.length > 0
+    ? `${post.title} — ${cleanDesc.slice(0, 120)}${cleanDesc.length > 120 ? '...' : ''}`
+    : `${post.title} - ${plat.name}副业讨论，骗局预警分析`;
+
   return (
     <div style={{ maxWidth: 700, margin: '0 auto', padding: '40px 24px 48px' }}>
       <Head>
         <title>{post.title} - 副业侦探</title>
-        <meta name="description" content={`${post.title} - ${plat.name}副业讨论`} />
+        <meta name="description" content={metaDesc} />
         <meta property="og:title" content={`${post.title} - 副业侦探`} />
         <meta property="og:description" content={`来自${plat.name}的副业讨论，骗局预警分析`} />
         <meta property="og:type" content="article" />

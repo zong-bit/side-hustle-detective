@@ -14,6 +14,22 @@ const CATEGORIES = {
 const TYPE_NAMES = Object.keys(CATEGORIES);
 const PAGE_SIZE = 20;
 
+const platformConfig = {
+  tieba:    { label: '贴吧',   icon: '📌', bg: 'var(--accent-subtle)', color: 'var(--accent)', border: 'var(--accent-faint)' },
+  zhihu:    { label: '知乎',   icon: '💡', bg: '#faf5ff',             color: '#6b46c1',      border: '#e9d8fd' },
+  xiaohongshu: { label: '小红书', icon: '📕', bg: 'var(--danger-subtle)', color: 'var(--danger)', border: 'var(--danger-border)' },
+  bilibili: { label: 'B站',    icon: '📺', bg: '#f0f9ff',             color: '#0284c7',      border: '#bae6fd' },
+  hupu:     { label: '虎扑',   icon: '🏀', bg: '#f0fdf4',             color: '#15803d',      border: '#bbf7d0' },
+};
+
+const typeIconMap = {
+  online: { icon: '💻', label: '线上兼职' },
+  offline: { icon: '🏪', label: '实体创业' },
+  content: { icon: '✍️', label: '内容创作' },
+  skill: { icon: '🛠️', label: '技能服务' },
+  social: { icon: '🛒', label: '社交电商' },
+};
+
 export default function CategoryPage() {
   const router = useRouter();
   const { type } = router.query;
@@ -149,10 +165,20 @@ export default function CategoryPage() {
                 }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8, alignItems: 'center', flexWrap: 'wrap', gap: 6 }}>
-                  <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
-                    <span className="badge" style={{ background: p.platform === 'tieba' ? 'var(--accent-subtle)' : p.platform === 'zhihu' ? '#faf5ff' : 'var(--danger-subtle)', color: p.platform === 'tieba' ? 'var(--accent)' : p.platform === 'zhihu' ? '#6b46c1' : 'var(--danger)', boxShadow: `0 0 0 1px ${p.platform === 'tieba' ? 'var(--accent-faint)' : p.platform === 'zhihu' ? '#e9d8fd' : 'var(--danger-border)'}` }}>
-                      {p.platform === 'tieba' ? '贴吧' : p.platform === 'zhihu' ? '知乎' : p.platform === 'xiaohongshu' ? '小红书' : p.platform}
-                    </span>
+                  <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
+                    {(() => {
+                      const pc = platformConfig[p.platform] || { label: p.platform, icon: '📰', bg: 'var(--bg-subtle)', color: 'var(--fg-muted)', border: 'var(--border)' };
+                      return (
+                        <span className="badge" style={{ background: pc.bg, color: pc.color, boxShadow: `0 0 0 1px ${pc.border}` }}>
+                          {pc.icon} {pc.label}
+                        </span>
+                      );
+                    })()}
+                    {p.type && typeIconMap[p.type] && (
+                      <span className="badge badge-accent">
+                        {typeIconMap[p.type].icon} {typeIconMap[p.type].label}
+                      </span>
+                    )}
                   </div>
                   <StatusBadge isScam={isScam} isLowQuality={isLowQuality} />
                 </div>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 
@@ -76,11 +76,127 @@ function LoadingSpinner() {
   );
 }
 
+function DailyRecommendCard({ recommend, onRefresh }) {
+  if (!recommend) return null;
+
+  const platformLabels = {
+    tieba: { icon: '📌', label: '贴吧', bg: 'var(--accent-subtle)', color: 'var(--accent)' },
+    zhihu: { icon: '💡', label: '知乎', bg: '#faf5ff', color: '#6b46c1' },
+    xiaohongshu: { icon: '📕', label: '小红书', bg: 'var(--danger-subtle)', color: 'var(--danger)' },
+    bilibili: { icon: '📺', label: 'B站', bg: '#f0f9ff', color: '#0284c7' },
+    hupu: { icon: '🏀', label: '虎扑', bg: '#f0fdf4', color: '#15803d' },
+    warning: { icon: '⚠️', label: '防骗', bg: 'var(--danger-subtle)', color: 'var(--danger)' },
+  };
+
+  const p = platformLabels[recommend.platform] || { icon: '📰', label: '其他', bg: 'var(--bg-subtle)', color: 'var(--fg-muted)' };
+
+  return (
+    <div className="card fade-in" style={{ padding: '20px 24px', marginBottom: 36, background: 'var(--bg-subtle)', border: '1px solid var(--border)' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span style={{ fontSize: 18 }}>🎯</span>
+          <span style={{ fontSize: 14, fontWeight: 600, letterSpacing: '-0.01em' }}>每日推荐</span>
+        </div>
+        <button
+          onClick={onRefresh}
+          style={{
+            border: 'none', background: 'var(--bg-elevated)', cursor: 'pointer',
+            fontSize: 12, color: 'var(--fg-muted)', padding: '4px 12px', borderRadius: 4,
+            boxShadow: 'var(--shadow-card)', fontFamily: 'inherit', transition: 'all 0.15s',
+          }}
+          onMouseEnter={e => e.target.style.boxShadow = 'var(--shadow-card-hover)'}
+          onMouseLeave={e => e.target.style.boxShadow = 'var(--shadow-card)'}
+        >
+          🔄 换一条
+        </button>
+      </div>
+      <Link href={`/posts/${btoa(encodeURIComponent(recommend.url))}`} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
+        <div style={{ fontSize: 15, fontWeight: 500, lineHeight: 1.5, marginBottom: 10, letterSpacing: '-0.01em' }}>
+          {recommend.title}
+        </div>
+      </Link>
+      {recommend.snippet && (
+        <p style={{ fontSize: 13, color: 'var(--fg-muted)', margin: '0 0 12px', lineHeight: 1.7 }}>
+          {recommend.snippet}
+        </p>
+      )}
+      <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+        <span style={{ fontSize: 12, color: p.color, fontWeight: 500 }}>
+          {p.icon} {p.label}
+        </span>
+        {recommend.author && (
+          <span style={{ fontSize: 12, color: 'var(--fg-faint)' }}>
+            · {recommend.author}
+          </span>
+        )}
+        {recommend.time && (
+          <span style={{ fontSize: 12, color: 'var(--fg-faint)', fontVariantNumeric: 'tabular-nums' }}>
+            · {recommend.time}
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function BlogSection() {
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    fetch('/api/blog-posts')
+      .then(r => r.json())
+      .then(data => {
+        if (Array.isArray(data)) setArticles(data.slice(0, 3));
+      })
+      .catch(() => {});
+  }, []);
+
+  if (articles.length === 0) return null;
+
+  return (
+    <div style={{ marginBottom: 40 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+        <h2 style={{ fontSize: 16, fontWeight: 600, letterSpacing: '-0.02em' }}>📖 最新文章</h2>
+        <Link href="/blog" style={{ fontSize: 13, color: 'var(--fg-muted)' }}>
+          查看全部 →
+        </Link>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        {articles.map((post, i) => (
+          <Link
+            key={i}
+            href={`/blog/${post.slug}`}
+            className="card"
+            style={{
+              padding: '16px 20px',
+              borderRadius: 0,
+              borderLeft: '3px solid var(--accent)',
+              textDecoration: 'none',
+              color: 'inherit',
+              display: 'block',
+            }}
+          >
+            <div style={{ fontSize: 12, color: 'var(--fg-faint)', marginBottom: 4, fontVariantNumeric: 'tabular-nums' }}>
+              {post.date || ''}
+            </div>
+            <div style={{ fontSize: 14, fontWeight: 500, lineHeight: 1.4, letterSpacing: '-0.01em' }}>
+              {post.title}
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   const [posts, setPosts] = useState([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState('all');
+  const [recommend, setRecommend] = useState(null);
+  const [totalPosts, setTotalPosts] = useState(0);
+  const [lastUpdate, setLastUpdate] = useState('');
 
   useEffect(() => {
     async function loadData() {
@@ -92,6 +208,31 @@ export default function Home() {
       setLoading(false);
     }
     loadData();
+
+    // Load total count
+    fetch('/api/posts')
+      .then(r => r.json())
+      .then(data => setTotalPosts(Array.isArray(data) ? data.length : 0))
+      .catch(() => {});
+
+    // Load last update time
+    fetch('/data/last_update.txt')
+      .then(r => r.text())
+      .then(t => setLastUpdate(t.trim()))
+      .catch(() => {});
+
+    // Load daily recommendation
+    fetchDailyRecommend();
+  }, []);
+
+  const fetchDailyRecommend = useCallback(async () => {
+    try {
+      const res = await fetch('/api/daily-recommend');
+      const data = await res.json();
+      if (data && data.title) setRecommend(data);
+    } catch {
+      setRecommend(null);
+    }
   }, []);
 
   const stats = {
@@ -116,7 +257,7 @@ export default function Home() {
     <div style={{ maxWidth: 900, margin: '0 auto', padding: '40px 24px 48px' }}>
       <Head>
         <title>副业侦探 - 副业信息聚合与防骗检测</title>
-        <meta name="description" content="聚合贴吧、知乎、小红书的副业讨论，AI 关键词辅助甄别骗局。" />
+        <meta name="description" content="副业侦探 - 聚合全网副业信息，发现靠谱副业项目，防骗指南与赚钱攻略" />
         <meta name="keywords" content="副业,兼职,赚钱,防骗,贴吧副业,知乎副业,小红书副业" />
         <meta property="og:title" content="副业侦探 - 副业信息聚合与防骗检测" />
         <meta property="og:description" content="聚合贴吧、知乎、小红书的副业讨论，AI 关键词辅助甄别骗局。" />
@@ -134,6 +275,32 @@ export default function Home() {
         <p style={{ fontSize: 14, color: 'var(--fg-muted)', lineHeight: 1.6, maxWidth: 480 }}>
           聚合贴吧 · 知乎 · 小红书上的副业讨论，自动甄别骗局
         </p>
+      </div>
+
+      {/* Banner */}
+      <div style={{
+        background: 'var(--accent)',
+        color: '#ffffff',
+        padding: '12px 20px',
+        borderRadius: 0,
+        marginBottom: 32,
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: 8,
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span style={{ fontSize: 16 }}>📢</span>
+          <span style={{ fontSize: 14, fontWeight: 500 }}>
+            今天有 <strong style={{ fontSize: 16 }}>{totalPosts}</strong> 个副业推荐
+          </span>
+        </div>
+        {lastUpdate && (
+          <span style={{ fontSize: 12, opacity: 0.85, fontVariantNumeric: 'tabular-nums' }}>
+            最近更新：{lastUpdate}
+          </span>
+        )}
       </div>
 
       {/* Disclaimer */}
@@ -219,6 +386,12 @@ export default function Home() {
         ))}
       </div>
 
+      {/* Daily Recommendation */}
+      {recommend && <DailyRecommendCard recommend={recommend} onRefresh={fetchDailyRecommend} />}
+
+      {/* Latest Blog Articles */}
+      <BlogSection />
+
       {/* Post list */}
       {loading ? (
         <LoadingSpinner />
@@ -301,6 +474,69 @@ export default function Home() {
           })}
         </div>
       )}
+
+      {/* Recommended Tools */}
+      <div style={{ marginBottom: 40 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+          <h2 style={{ fontSize: 16, fontWeight: 600, letterSpacing: '-0.02em' }}>🛠️ 推荐工具</h2>
+        </div>
+        <div className="card" style={{ padding: '24px', background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)', border: '1px solid #bae6fd' }}>
+          <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', alignItems: 'flex-start' }}>
+            <div style={{ flex: 1, minWidth: 200 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+                <span style={{ fontSize: 28 }}>📝</span>
+                <div>
+                  <div style={{ fontSize: 16, fontWeight: 600, letterSpacing: '-0.01em' }}>50个科研AI Prompt合集</div>
+                  <div style={{ fontSize: 12, color: 'var(--fg-muted)', marginTop: 2 }}>科研效率工具 · 即买即用</div>
+                </div>
+              </div>
+              <p style={{ fontSize: 13, color: 'var(--fg)', lineHeight: 1.7, margin: '0 0 12px' }}>
+                覆盖论文摘要、改写、分析、写作、效率五大场景，共50个精心调校的Prompt。适配 ChatGPT、Claude、DeepSeek 等所有主流AI工具，即复制即用。
+              </p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 14 }}>
+                <span className="badge" style={{ background: '#dbeafe', color: '#1d4ed8', border: '1px solid #bfdbfe' }}>✍️ 论文摘要</span>
+                <span className="badge" style={{ background: '#fce7f3', color: '#be185d', border: '1px solid #fbcfe8' }}>🔄 改写润色</span>
+                <span className="badge" style={{ background: '#d1fae5', color: '#047857', border: '1px solid #a7f3d0' }}>🔬 深度分析</span>
+                <span className="badge" style={{ background: '#fef3c7', color: '#b45309', border: '1px solid #fde68a' }}>📄 论文写作</span>
+                <span className="badge" style={{ background: '#ede9fe', color: '#6d28d9', border: '1px solid #ddd6fe' }}>⚡ 效率提升</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+                <span style={{ fontSize: 22, fontWeight: 700, color: 'var(--accent)', letterSpacing: '-0.02em' }}>¥19.9</span>
+                <span style={{ fontSize: 12, color: 'var(--fg-faint)' }}>一次性购买 · 持续更新</span>
+              </div>
+            </div>
+            <div style={{ width: 220, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 8 }}>
+              <div style={{ fontSize: 12, color: 'var(--fg-muted)', lineHeight: 1.6, marginBottom: 4 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>✅ 即买即用，无需配置</div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>✅ 适配所有主流AI</div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>✅ 5大场景全覆盖</div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>✅ 持续更新迭代</div>
+              </div>
+              <a
+                href="https://afdian.com/item/xxxx"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'block',
+                  textAlign: 'center',
+                  padding: '10px 0',
+                  background: 'var(--accent)',
+                  color: '#fff',
+                  borderRadius: 0,
+                  fontSize: 14,
+                  fontWeight: 600,
+                  textDecoration: 'none',
+                  transition: 'opacity 0.15s',
+                }}
+                onMouseEnter={e => e.target.style.opacity = 0.85}
+                onMouseLeave={e => e.target.style.opacity = 1}
+              >
+                🛒 立即购买
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Footer */}
       <div style={{ textAlign: 'center', padding: '40px 0', marginTop: 48, fontSize: 12, color: 'var(--fg-faint)', borderTop: '1px solid var(--border)' }}>
