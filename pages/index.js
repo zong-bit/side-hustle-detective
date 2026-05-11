@@ -10,18 +10,20 @@ const CATEGORIES = [
 ];
 
 function getTrustScore(score) {
-  if (score <= 20) return { color: 'var(--danger)', label: '极低' };
-  if (score <= 50) return { color: 'var(--warning)', label: '较低' };
-  if (score <= 80) return { color: 'var(--warning)', label: '一般' };
+  const s = Number(score) || 50;
+  if (s <= 20) return { color: 'var(--danger)', label: '极低' };
+  if (s <= 50) return { color: 'var(--warning)', label: '较低' };
+  if (s <= 80) return { color: 'var(--warning)', label: '一般' };
   return { color: 'var(--success)', label: '可信' };
 }
 
 function TrustBar({ score }) {
-  const info = getTrustScore(score);
+  const s = Number(score) || 50;
+  const info = getTrustScore(s);
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 10 }}>
       <div className="progress-track">
-        <div className="progress-fill" style={{ width: `${score}%`, background: info.color }} />
+        <div className="progress-fill" style={{ width: `${s}%`, background: info.color }} />
       </div>
       <span style={{ fontSize: 11, fontWeight: 500, color: info.color, whiteSpace: 'nowrap', fontVariantNumeric: 'tabular-nums' }}>
         {score}分
@@ -189,14 +191,35 @@ function BlogSection() {
   );
 }
 
-export default function Home() {
-  const [posts, setPosts] = useState([]);
+export async function getServerSideProps() {
+  const fs = await import('fs');
+  const path = await import('path');
+  const dataDir = path.default.join(process.cwd(), 'data');
+  let allPosts = [];
+  if (fs.default.existsSync(dataDir)) {
+    const files = fs.default.readdirSync(dataDir).filter(f => f.endsWith('.json'));
+    for (const file of files) {
+      try {
+        const content = fs.default.readFileSync(path.default.join(dataDir, file), 'utf8');
+        const posts = JSON.parse(content);
+        if (Array.isArray(posts)) allPosts = allPosts.concat(posts);
+        else if (posts.posts) allPosts = allPosts.concat(posts.posts);
+      } catch(e) {}
+    }
+  }
+  const totalCount = allPosts.length;
+  const today = new Date().toISOString().slice(0,10);
+  return { props: { initialPosts: allPosts, totalCount, lastUpdate: today } };
+}
+
+export default function Home({ initialPosts = [], totalCount = 0, lastUpdate: initialLastUpdate = '' }) {
+  const [posts, setPosts] = useState(initialPosts);
   const [search, setSearch] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(initialPosts.length === 0);
   const [category, setCategory] = useState('all');
   const [recommend, setRecommend] = useState(null);
-  const [totalPosts, setTotalPosts] = useState(0);
-  const [lastUpdate, setLastUpdate] = useState('');
+  const [totalPosts, setTotalPosts] = useState(totalCount);
+  const [lastUpdate, setLastUpdate] = useState(initialLastUpdate);
 
   useEffect(() => {
     async function loadData() {
@@ -215,11 +238,6 @@ export default function Home() {
       .then(data => setTotalPosts(Array.isArray(data) ? data.length : 0))
       .catch(() => {});
 
-    // Load last update time
-    fetch('/data/last_update.txt')
-      .then(r => r.text())
-      .then(t => setLastUpdate(t.trim()))
-      .catch(() => {});
 
     // Load daily recommendation
     fetchDailyRecommend();
