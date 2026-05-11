@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AutoTTS论文解读：测试时扩展如何自动发现推理策略｜Paper Summarizer</title>
+<meta name="description" content="深度解读2026年5月最新论文AutoTTS：利用LLM自动发现测试时扩展（Test-Time Scaling）策略，在数学推理任务上以39.9美元成本实现超越人工设计的精度-成本权衡。">
+<meta name="keywords" content="AutoTTS,测试时扩展,Test-Time Scaling,测试时计算,TTS策略,大模型推理,LLM自动发现,数学推理,arXiv 2026,论文解读,推理加速,计算分配,宽度深度控制,Paper Summarizer">
+<meta name="author" content="Paper Summarizer Team">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://paper-summarizer.com/autotts-test-time-scaling-2026">
+<!-- Open Graph -->
+<meta property="og:title" content="AutoTTS论文解读：测试时扩展如何自动发现推理策略｜Paper Summarizer">
+<meta property="og:description" content="2026年5月最新论文：AutoTTS用39.9美元成本自动发现超越人工设计的测试时扩展策略。">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_CN">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AutoTTS论文解读：测试时扩展如何自动发现推理策略">
+<meta name="twitter:description" content="2026年5月最新论文：AutoTTS用39.9美元成本自动发现超越人工设计的测试时扩展策略。">
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AutoTTS论文解读：测试时扩展如何自动发现推理策略",
+  "description": "深度解读AutoTTS框架：利用环境驱动方法自动发现大语言模型测试时扩展策略，在数学推理基准上超越手工设计的启发式方法。",
+  "author": {
+    "@type": "Organization",
+    "name": "Paper Summarizer Team"
+  },
+  "datePublished": "2026-05-12",
+  "dateModified": "2026-05-12",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://paper-summarizer.com/autotts-test-time-scaling-2026"
+  },
+  "keywords": ["AutoTTS", "测试时扩展", "Test-Time Scaling", "大模型推理", "数学推理"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "测试时计算（Test-Time Compute）自动发现：AutoTTS论文详解",
+  "description": "AutoTTS提出环境驱动范式，用LLM自动搜索最优的测试时计算分配策略，成本仅39.9美元。",
+  "author": {
+    "@type": "Organization",
+    "name": "Paper Summarizer Team"
+  },
+  "datePublished": "2026-05-12",
+  "dateModified": "2026-05-12",
+  "keywords": ["测试时计算", "TTS策略", "计算分配", "推理策略自动发现"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "什么是测试时扩展（Test-Time Scaling）？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "测试时扩展（Test-Time Scaling, TTS）是一种在推理阶段动态分配额外计算资源以提升大语言模型性能的技术。与传统的训练时扩展不同，TTS在模型推理过程中根据问题难度自适应地调整计算量，如增加推理步数、扩展搜索宽度、深度探索等，从而在精度和成本之间取得更好的平衡。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "AutoTTS的核心创新是什么？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AutoTTS的核心创新在于将TTS策略发现从'人工设计启发式规则'转变为'环境驱动自动发现'。研究者只需定义控制空间（状态、动作、反馈、目标），由探索者LLM在离线回放环境中自动搜索最优的计算分配策略。该方法仅花费39.9美元和160分钟就完成了整个策略发现过程。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "测试时计算对大模型性能有多大提升？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AutoTTS实验表明，自动发现的TTS策略在多个数学推理基准上实现了超越最强人工设计基线的精度-成本权衡。在相同的计算成本下，AutoTTS策略获得了更高的准确率；或者在达到相同准确率时，使用了更少的计算。策略还展现出跨基准和跨模型的泛化能力。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "AutoTTS论文可以在哪里找到？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AutoTTS论文arXiv:2605.08083于2026年5月8日发布，可在https://arxiv.org/abs/2605.08083查阅。代码和数据将在https://github.com/zhengkid/AutoTTS开源。"
+      }
+    }
+  ]
+}
+</script>
+<style>
+  :root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --accent: #7c3aed;
+    --bg: #f8fafc;
+    --card-bg: #ffffff;
+    --text: #1e293b;
+    --text-light: #64743b;
+    --border: #e2e8f0;
+    --gradient-start: #2563eb;
+    --gradient-end: #7c3aed;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.9;
+    font-size: 16px;
+  }
+  .container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: #fff;
+    padding: 60px 0 50px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+  .hero .subtitle {
+    font-size: 1.1rem;
+    opacity: 0.92;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .hero .meta {
+    margin-top: 20px;
+    font-size: 0.85rem;
+    opacity: 0.8;
+  }
+
+  /* Content */
+  .content { padding: 40px 0 60px; }
+  .content h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 40px 0 16px;
+    color: var(--text);
+    border-left: 4px solid var(--primary);
+    padding-left: 14px;
+  }
+  .content h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 28px 0 12px;
+    color: var(--primary-dark);
+  }
+  .content p {
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+  .content strong { color: var(--primary-dark); }
+
+  /* Cards */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin: 24px 0 32px;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: box-shadow 0.2s;
+  }
+  .card:hover { box-shadow: 0 4px 20px rgba(37,99,235,0.1); }
+  .card h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--primary);
+  }
+  .card p { font-size: 0.95rem; color: var(--text-light); }
+
+  /* Highlight box */
+  .highlight-box {
+    background: linear-gradient(135deg, #eff6ff, #f5f3ff);
+    border-left: 4px solid var(--primary);
+    border-radius: 0 12px 12px 0;
+    padding: 24px 28px;
+    margin: 28px 0;
+  }
+  .highlight-box p { margin-bottom: 8px; }
+
+  /* Code block */
+  .code-block {
+    background: #1e293b;
+    color: #e2e8f0;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 20px 0;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.9rem;
+    overflow-x: auto;
+    line-height: 1.6;
+  }
+
+  /* FAQ */
+  .faq-section {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    margin: 40px 0;
+  }
+  .faq-section h2 {
+    border-left: none;
+    padding-left: 0;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
+  }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-item h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--primary-dark);
+  }
+  .faq-item p {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    margin: 0;
+  }
+
+  /* Paper link */
+  .paper-link {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: #fff;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 16px 0;
+    transition: opacity 0.2s;
+  }
+  .paper-link:hover { opacity: 0.9; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 40px 0;
+    color: var(--text-light);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 1.6rem; }
+    .content h2 { font-size: 1.3rem; }
+    .card-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<div class="hero">
+  <div class="container">
+    <h1>AutoTTS论文解读：测试时扩展如何自动发现推理策略</h1>
+    <p class="subtitle">2026年5月最新arXiv论文：用39.9美元成本自动发现超越人工设计的TTS推理策略</p>
+    <p class="meta">📅 2026年5月12日 · Paper Summarizer团队 · arXiv:2605.08083</p>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="container content">
+
+  <!-- Introduction -->
+  <h2>引言：大模型推理的"第二曲线"——测试时计算</h2>
+  <p>2024年以来，AI领域出现了一个日益重要的研究方向：<strong>测试时扩展（Test-Time Scaling, TTS）</strong>。与传统的"在训练时投入更多算力"的思路不同，TTS关注的是：<strong>在模型推理阶段，如何动态分配额外的计算资源来提升性能？</strong></p>
+  <p>想象一下这个场景：你问一个AI模型一个简单问题，它快速回答；但你问一个复杂的数学证明题时，它会自动"多思考一会儿"——展开更多推理分支、反复验证中间结果、甚至尝试不同的解题路径。这就是TTS的核心思想：<strong>让模型根据问题难度自适应地调整推理深度和广度</strong>。</p>
+  <p>2026年5月8日，来自马里兰大学（UMD）、弗吉尼亚大学（UVA）、华盛顿大学（WUSTL）、UNC、Google和Meta的联合研究团队在arXiv上发布了一篇题为<strong>"LLMs Improving LLMs: Agentic Discovery for Test-Time Scaling"</strong>的论文（arXiv:2605.08083），提出了一个名为<strong>AutoTTS</strong>的革命性框架。该框架用仅<strong>39.9美元和160分钟</strong>的成本，自动发现了超越人工设计启发式方法的TTS策略。</p>
+  <p>本文将深入解读AutoTTS的核心创新、技术细节、实验结果及其对AI推理领域的深远影响。</p>
+
+  <!-- Section 1 -->
+  <h2>一、测试时扩展（TTS）：从"固定推理"到"自适应计算"</h2>
+
+  <h3>1.1 为什么需要测试时扩展？</h3>
+  <p>大语言模型在训练阶段投入了海量算力，但最终的性能表现不仅取决于训练时的计算量，更取决于<strong>推理时如何分配计算资源</strong>。</p>
+  <p>传统的大模型推理是"固定"的：无论问题简单还是复杂，模型都以相同的计算预算进行推理。这导致了两个问题：</p>
+  <p>1. <strong>简单问题浪费计算</strong>：对于简单问题，模型可能过度推理，浪费时间和成本。<br>2. <strong>复杂问题计算不足</strong>：对于复杂问题，固定预算的推理往往不够充分，导致准确率下降。</p>
+  <p>TTS试图解决这个根本矛盾：让模型在推理时能够<strong>感知问题难度</strong>，并<strong>动态调整计算分配</strong>。</p>
+
+  <h3>1.2 TTS的发展脉络</h3>
+  <p>TTS的概念可以追溯到2024年Snell等人提出的<strong>"Scaling Test-Time Compute"</strong>工作。此后，这一方向迅速成为研究热点：</p>
+  <div class="card-grid">
+    <div class="card">
+      <h4>Self-Consistency (SC)</h4>
+      <p>通过多次采样不同推理路径，取多数投票结果。经典TTS方法，广泛用于复杂推理任务。</p>
+    </div>
+    <div class="card">
+      <h4>Let's Verify Step by Step</h4>
+      <p>在推理的每一步进行验证，确保中间结果的正确性，防止错误累积。</p>
+    </div>
+    <div class="card">
+      <h4>s1 (Nimrod et al.)</h4>
+      <p>通过逐步扩展推理链来提升复杂推理任务的性能，探索深度扩展的可能性。</p>
+    </div>
+    <div class="card">
+      <h4>AlphaOne / DeepPrune</h4>
+      <p>自适应地决定何时停止扩展推理，或在推理过程中动态剪枝无效分支。</p>
+    </div>
+    <div class="card">
+      <h4>Parallel-Probe</h4>
+      <p>同时探索多个推理路径并逐步收敛，平衡探索与利用。</p>
+    </div>
+    <div class="card">
+      <h4>AutoTTS (本文)</h4>
+      <p>用环境驱动方法自动发现最优TTS策略，无需人工设计启发式规则。</p>
+    </div>
+  </div>
+  <p>然而，这些方法都是<strong>人工设计的启发式策略</strong>——研究者凭直觉设计分支、剪枝、停止的规则，然后手动调参。这种方法存在明显的局限性：<strong>人类设计师的想象力是有限的</strong>，而计算分配的搜索空间是巨大的。</p>
+
+  <!-- Section 2 -->
+  <h2>二、AutoTTS的核心创新：从"人工设计"到"自动发现"</h2>
+
+  <h3>2.1 核心洞察：TTS策略 = 计算分配空间中的路径</h3>
+  <p>AutoTTS团队提出了一个关键洞察：<strong>现有的TTS策略本质上都是在某个"计算分配空间"中手动指定的路径</strong>。</p>
+  <p>以<strong>宽度-深度控制空间</strong>为例：</p>
+  <ul style="margin: 12px 0 16px 24px; color: var(--text-light);">
+    <li><strong>宽度（Width）</strong>：同时探索多少个推理分支？</li>
+    <li><strong>深度（Depth）</strong>：每个推理分支探索多深？</li>
+  </ul>
+  <p>不同的TTS策略对应于在这个二维空间中走不同的"路径"：</p>
+  <div class="card-grid">
+    <div class="card">
+      <h4>SC@64</h4>
+      <p>走满64个分支的固定宽度路径，在宽度轴上走到尽头。</p>
+    </div>
+    <div class="card">
+      <h4>LV (Step by Step)</h4>
+      <p>沿深度轴逐步扩展，每步验证后决定是否继续。</p>
+    </div>
+    <div class="card">
+      <h4>ST-BoN</h4>
+      <p>先宽后深：先扩展再剪枝，最后深度探索最佳分支。</p>
+    </div>
+    <div class="card">
+      <h4>Parallel-Probe</h4>
+      <p>宽-深交替的螺旋路径，同时探索多个深度。</p>
+    </div>
+  </div>
+  <div class="highlight-box">
+    <p><strong>💡 核心洞察：</strong>既然TTS策略可以被看作计算分配空间中的路径，为什么不直接用AI来自动搜索最优路径呢？</p>
+    <p>这就是AutoTTS的核心思想：<strong>将TTS策略发现从"人工设计启发式规则"转变为"环境驱动自动发现"。</strong></p>
+  </div>
+
+  <h3>2.2 AutoTTS框架概览</h3>
+  <p>AutoTTS的工作流程可以分为三个核心阶段：</p>
+  <div class="card-grid">
+    <div class="card">
+      <h4>① 构建回放环境</h4>
+      <p>对于每个问题，预先收集一组推理轨迹和探针信号，构建离线回放环境，在其中可以"重放"不同的TTS策略。关键设计：让控制空间可处理，并提供廉价且频繁的反馈。</p>
+    </div>
+    <div class="card">
+      <h4>② 自动发现循环</h4>
+      <p>探索者LLM迭代地提出候选控制器，在离线回放环境中评估每个候选策略，接收来自扩展曲线和执行轨迹的反馈，利用累积的历史记录改进下一次提议。</p>
+    </div>
+    <div class="card">
+      <h4>③ 策略部署</h4>
+      <p>将发现的控制器部署到新的问题和模型上，在推理时实时执行：决定何时分支、何时扩展、何时停止。</p>
+    </div>
+  </div>
+
+  <h3>2.3 关键技术突破</h3>
+
+  <h4>Beta参数化（Beta Parameterization）</h4>
+  <p>为了让搜索空间可处理，AutoTTS引入了<strong>beta参数化</strong>技术。核心思想是将复杂的控制器策略参数化为一个连续的beta值，使得搜索空间变得平滑且可微。这使得探索者LLM能够进行细粒度的策略调整，而不必在离散的策略空间中盲目搜索。</p>
+
+  <h4>细粒度执行轨迹反馈</h4>
+  <p>传统的强化学习反馈往往只给出一个标量奖励（如"正确/错误"），这对于调试TTS策略来说过于粗糙。AutoTTS引入了<strong>细粒度的执行轨迹反馈</strong>，帮助探索者LLM诊断TTS程序为什么失败：</p>
+  <ul style="margin: 12px 0 16px 24px; color: var(--text-light);">
+    <li>哪个分支在哪个步骤产生了错误？</li>
+    <li>扩展是否过早或过晚？</li>
+    <li>剪枝是否过于激进？</li>
+  </ul>
+  <p>这种<strong>"诊断式反馈"</strong>大幅提高了策略发现的效率。</p>
+
+  <!-- Section 3 -->
+  <h2>三、实验结果：39.9美元的成本，超越人工设计</h2>
+
+  <h3>3.1 实验设置</h3>
+  <p>AutoTTS在多个数学推理基准上进行了实验，包括<strong>AIME 2025</strong>等权威竞赛级数据集。实验涵盖了不同规模的模型（从Qwen-1.7B到更大规模模型），验证了策略的泛化能力。</p>
+
+  <h3>3.2 核心结果</h3>
+  <div class="highlight-box">
+    <p><strong>🏆 精度-成本权衡的帕累托前沿（Pareto Frontier）全面超越</strong>：AutoTTS发现的策略在所有测试基准上都实现了比最强人工设计基线更优的精度-成本权衡。</p>
+  </div>
+  <p>具体而言：</p>
+  <ul style="margin: 12px 0 16px 24px; color: var(--text-light);">
+    <li><strong>相同成本更高精度</strong>：在相同的计算成本下，AutoTTS策略获得了更高的准确率。</li>
+    <li><strong>相同精度更低成本</strong>：在达到相同准确率时，AutoTTS策略使用了更少的计算。</li>
+    <li><strong>跨基准泛化</strong>：在训练时未见过的基准上，AutoTTS发现的策略依然保持优异表现。</li>
+    <li><strong>跨模型泛化</strong>：将AutoTTS在Qwen-1.7B上发现的策略迁移到更大规模的模型上，依然有效。</li>
+  </ul>
+
+  <h3>3.3 成本效率</h3>
+  <div class="code-block">
+    策略发现成本：$39.90 USD<br>
+    总耗时：160 分钟<br>
+    发现策略数：数百个候选控制器<br>
+    最终部署策略：1个最优控制器
+  </div>
+  <p>最令人印象深刻的是成本效率：<strong>整个策略发现过程仅花费39.9美元和160分钟</strong>。这意味着：</p>
+  <ul style="margin: 12px 0 16px 24px; color: var(--text-light);">
+    <li>发现过程本身非常轻量，不需要昂贵的训练循环</li>
+    <li>离线回放环境的设计让评估成本极低</li>
+    <li>beta参数化大幅减少了探索所需的迭代次数</li>
+  </ul>
+
+  <!-- Section 4 -->
+  <h2>四、AutoTTS的意义与影响</h2>
+
+  <h3>4.1 对TTS研究范式的转变</h3>
+  <p>AutoTTS代表了一个<strong>根本性的范式转变</strong>：研究者不再需要手动设计TTS启发式规则，而是专注于<strong>定义好的发现环境</strong>——即定义状态空间、动作空间、反馈机制和目标函数。这类似于从"手写规则"到"设计RL环境"的转变。</p>
+
+  <h3>4.2 对大模型推理的启示</h3>
+  <div class="card-grid">
+    <div class="card">
+      <h4>🔄 推理不再是"一次性"过程</h4>
+      <p>模型在推理时应该能够动态调整计算策略，根据问题难度自适应分配资源。</p>
+    </div>
+    <div class="card">
+      <h4>🎯 离线探索是可行的</h4>
+      <p>通过精心设计的回放环境，可以在不重复调用LLM的情况下评估TTS策略。</p>
+    </div>
+    <div class="card">
+      <h4>🤖 自动发现优于人工设计</h4>
+      <p>在复杂的计算分配空间中，人类设计师的直觉往往不足以找到最优策略。</p>
+    </div>
+  </div>
+
+  <h3>4.3 未来方向</h3>
+  <p>AutoTTS为后续研究开辟了多个方向：</p>
+  <ul style="margin: 12px 0 16px 24px; color: var(--text-light);">
+    <li><strong>更丰富的控制空间</strong>：从宽度-深度扩展到树搜索、验证器引导的细化等更复杂的结构。</li>
+    <li><strong>多模态TTS</strong>：将TTS策略发现扩展到视觉、音频等多模态推理场景。</li>
+    <li><strong>实时自适应</strong>：在推理过程中在线调整策略，而非预先发现固定策略。</li>
+    <li><strong>跨任务泛化</strong>：发现能够在数学、代码、科学推理等不同任务间通用的TTS策略。</li>
+  </ul>
+
+  <!-- Section 5 -->
+  <h2>五、总结</h2>
+  <p>AutoTTS论文提出了一个简洁而有力的观点：<strong>与其人工设计TTS策略，不如设计一个让AI自动发现策略的环境。</strong>通过离线回放环境、beta参数化和细粒度反馈这三个关键设计，AutoTTS以极低的成本（39.9美元、160分钟）自动发现了超越人工设计的TTS策略。</p>
+  <p>这篇论文不仅为测试时扩展研究提供了新的范式，也为更广泛的<strong>"用AI发现AI策略"</strong>的研究方向提供了有价值的参考。随着大模型推理成本的持续优化需求，测试时计算分配的研究将更加重要。</p>
+
+  <div style="text-align: center; margin: 32px 0;">
+    <a href="https://arxiv.org/abs/2605.08083" class="paper-link" target="_blank" rel="noopener">📄 阅读原论文 (arXiv:2605.08083)</a>
+  </div>
+  <p style="text-align: center; color: var(--text-light);">
+    代码仓库：<a href="https://github.com/zhengkid/AutoTTS" style="color: var(--primary);" target="_blank" rel="noopener">github.com/zhengkid/AutoTTS</a>
+  </p>
+
+  <!-- FAQ Section -->
+  <div class="faq-section">
+    <h2>常见问题（FAQ）</h2>
+
+    <div class="faq-item">
+      <h3>什么是测试时扩展（Test-Time Scaling）？</h3>
+      <p>测试时扩展（Test-Time Scaling, TTS）是一种在推理阶段动态分配额外计算资源以提升大语言模型性能的技术。与传统的训练时扩展不同，TTS在模型推理过程中根据问题难度自适应地调整计算量，如增加推理步数、扩展搜索宽度、深度探索等，从而在精度和成本之间取得更好的平衡。</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>AutoTTS的核心创新是什么？</h3>
+      <p>AutoTTS的核心创新在于将TTS策略发现从"人工设计启发式规则"转变为"环境驱动自动发现"。研究者只需定义控制空间（状态、动作、反馈、目标），由探索者LLM在离线回放环境中自动搜索最优的计算分配策略。该方法仅花费39.9美元和160分钟就完成了整个策略发现过程。</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>测试时计算对大模型性能有多大提升？</h3>
+      <p>AutoTTS实验表明，自动发现的TTS策略在多个数学推理基准上实现了超越最强人工设计基线的精度-成本权衡。在相同的计算成本下，AutoTTS策略获得了更高的准确率；或者在达到相同准确率时，使用了更少的计算。策略还展现出跨基准和跨模型的泛化能力。</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>AutoTTS论文可以在哪里找到？</h3>
+      <p>AutoTTS论文arXiv:2605.08083于2026年5月8日发布，可在 <a href="https://arxiv.org/abs/2605.08083" style="color: var(--primary);" target="_blank" rel="noopener">https://arxiv.org/abs/2605.08083</a> 查阅。代码和数据将在 <a href="https://github.com/zhengkid/AutoTTS" style="color: var(--primary);" target="_blank" rel="noopener">github.com/zhengkid/AutoTTS</a> 开源。</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>AutoTTS与传统RLHF有什么区别？</h3>
+      <p>传统RLHF（基于人类反馈的强化学习）在训练阶段优化模型策略，而AutoTTS在推理阶段自动发现计算分配策略。AutoTTS的关键区别在于使用离线回放环境而非在线LLM调用进行评估，从而大幅降低了搜索成本。两者可以结合使用：用RLHF训练基础模型，用AutoTTS优化推理时的计算分配。</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <div class="container">
+    <p>本文基于arXiv:2605.08083论文撰写，由Paper Summarizer团队整理。</p>
+    <p>如需更多AI/ML论文解读，欢迎持续关注Paper Summarizer。</p>
+  </div>
+</div>
+
+</body>
+</html>
