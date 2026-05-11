@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>如何用AI写文献综述：2026年科研人员的终极指南｜Paper Summarizer</title>
+<meta name="description" content="系统讲解如何用AI高效写文献综述，涵盖六步工作流、2026年最佳工具对比、实战案例和避坑指南，帮助科研人员和研究生摆脱文献综述困境。">
+<meta name="keywords" content="AI写文献综述,AI文献综述,文献综述AI工具,AI辅助文献综述,AI写论文,科研论文综述,AI文献管理,文献综述怎么写,AI写综述,文献综述工具推荐">
+<meta name="author" content="Paper Summarizer Team">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://paper-summarizer.vercel.app/blog/literature-review-ai-guide-2026">
+<!-- Open Graph -->
+<meta property="og:title" content="如何用AI写文献综述：2026年科研人员的终极指南｜Paper Summarizer">
+<meta property="og:description" content="系统讲解AI文献综述工作流、工具对比和实战案例，帮助科研人员高效完成文献综述。">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="Paper Summarizer">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="如何用AI写文献综述：2026年科研人员的终极指南">
+<meta name="twitter:description" content="AI文献综述工作流、工具对比和实战案例，帮助科研人员高效完成文献综述。">
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "如何用AI写文献综述：2026年科研人员的终极指南",
+  "description": "系统讲解如何用AI高效写文献综述，涵盖六步工作流、2026年最佳工具对比、实战案例和避坑指南。",
+  "author": {
+    "@type": "Organization",
+    "name": "Paper Summarizer Team"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Paper Summarizer"
+  },
+  "datePublished": "2026-05-11",
+  "dateModified": "2026-05-11",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "id": "https://paper-summarizer.vercel.app/blog/literature-review-ai-guide-2026"
+  },
+  "keywords": ["AI写文献综述", "AI文献综述", "文献综述AI工具", "AI辅助文献综述", "AI写论文"],
+  "articleSection": "AI辅助科研"
+}
+</script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; line-height: 1.8; color: #1a1a2e; background: #f8f9fa; }
+header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: #fff; padding: 60px 20px 40px; text-align: center; }
+header h1 { font-size: 2.2em; margin-bottom: 16px; line-height: 1.3; max-width: 900px; margin-left: auto; margin-right: auto; }
+header .subtitle { font-size: 1.15em; color: #a8d8ea; margin-bottom: 20px; }
+header .meta { font-size: 0.95em; color: #b0c4de; display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+header .meta span { display: inline-flex; align-items: center; gap: 4px; }
+.container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+.lead { background: #fff; border-left: 4px solid #0f3460; padding: 24px 28px; margin: 30px 0; border-radius: 0 8px 8px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.lead p { margin-bottom: 12px; font-size: 1.05em; }
+.toc { background: #fff; padding: 24px 28px; margin: 30px 0; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.toc h2 { font-size: 1.3em; margin-bottom: 16px; color: #0f3460; }
+.toc ol { padding-left: 24px; }
+.toc li { margin-bottom: 8px; }
+.toc a { color: #0f3460; text-decoration: none; border-bottom: 1px dashed #b0c4de; }
+.toc a:hover { color: #e94560; border-bottom-color: #e94560; }
+section { background: #fff; padding: 32px 28px; margin: 24px 0; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+section h2 { font-size: 1.5em; color: #1a1a2e; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #e94560; }
+section h3 { font-size: 1.2em; color: #16213e; margin: 24px 0 12px; }
+section h4 { font-size: 1.05em; color: #0f3460; margin: 20px 0 10px; }
+section p { margin-bottom: 14px; }
+section ul, section ol { margin: 12px 0 14px 24px; }
+section li { margin-bottom: 8px; }
+section table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.95em; }
+section th, section td { padding: 10px 14px; border: 1px solid #e0e0e0; text-align: left; }
+section th { background: #f0f4f8; font-weight: 600; color: #0f3460; }
+section tr:nth-child(even) { background: #fafbfc; }
+section blockquote { border-left: 4px solid #e94560; padding: 12px 20px; margin: 16px 0; background: #fef5f7; border-radius: 0 8px 8px 0; }
+section pre { background: #1a1a2e; color: #e0e0e0; padding: 18px 22px; border-radius: 8px; overflow-x: auto; margin: 16px 0; font-size: 0.9em; line-height: 1.6; }
+section code { background: #f0f4f8; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+section pre code { background: none; padding: 0; }
+strong { color: #0f3460; }
+footer { text-align: center; padding: 40px 20px; color: #666; font-size: 0.9em; }
+footer p { margin-bottom: 8px; }
+footer a { color: #e94560; text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+.cta-box { background: linear-gradient(135deg, #0f3460, #16213e); color: #fff; padding: 28px 32px; border-radius: 12px; text-align: center; margin: 30px 0; }
+.cta-box p { margin-bottom: 12px; font-size: 1.05em; }
+.cta-box a { color: #a8d8ea; font-weight: 600; text-decoration: underline; }
+.cta-box a:hover { color: #fff; }
+@media (max-width: 768px) {
+  header h1 { font-size: 1.6em; }
+  section { padding: 20px 18px; }
+  section table { font-size: 0.85em; }
+  section th, section td { padding: 8px 10px; }
+}
+</style>
+</head>
+<body>
+<header>
+<h1>如何用AI写文献综述：2026年科研人员的终极指南</h1>
+<p class="subtitle">系统讲解AI文献综述工作流、工具对比与实战案例</p>
+<div class="meta">
+<span>📅 2026年5月11日</span>
+<span>⏱ 阅读时间约 22 分钟</span>
+<span>📂 AI辅助科研</span>
+</div>
+</header>
+
+<div class="container">
+
+<div class="lead">
+<p>研究生、科研人员、博士生，你是否面临这样的困境：导师要求两周内完成文献综述，但你面对几百篇论文无从下手？文献综述写了一半发现逻辑混乱、引用遗漏？本文系统讲解如何用AI高效完成文献综述，涵盖工作流、工具推荐、避坑指南，帮你把两周的工作压缩到两天。</p>
+</div>
+
+<div class="toc">
+<h2>📑 目录</h2>
+<ol>
+<li><a href="#s1">为什么文献综述让所有人头疼？</a></li>
+<li><a href="#s2">AI如何改变文献综述的范式</a></li>
+<li><a href="#s3">文献综述的完整流程与AI介入点</a></li>
+<li><a href="#s4">2026年最佳AI文献综述工具对比</a></li>
+<li><a href="#s5">实战：用AI写文献综述的六步工作流</a></li>
+<li><a href="#s6">不同研究阶段的AI策略</a></li>
+<li><a href="#s7">常见误区与避坑指南</a></li>
+<li><a href="#s8">常见问题解答</a></li>
+<li><a href="#s9">总结</a></li>
+</ol>
+</div>
+
+<!-- Section 1 -->
+<section id="s1">
+<h2>一、为什么文献综述让所有人头疼？</h2>
+
+<p>文献综述是学术写作中最基础也最令人头疼的环节之一。它要求你同时完成多项高难度任务：</p>
+
+<ul>
+<li><strong>阅读大量文献</strong>：一篇合格的文献综述通常需要引用30-100篇文献</li>
+<li><strong>理解不同观点</strong>：需要把握每个研究的核心贡献和局限性</li>
+<li><strong>建立逻辑框架</strong>：不是简单罗列，而是要有清晰的分类和脉络</li>
+<li><strong>发现研究空白</strong>：在前人研究的基础上找到自己的切入点</li>
+<li><strong>写作规范严谨</strong>：引用格式、学术语言、逻辑连贯</li>
+</ul>
+
+<h3>传统方式下的时间成本</h3>
+
+<table>
+<thead>
+<tr><th>环节</th><th>耗时</th><th>痛点</th></tr>
+</thead>
+<tbody>
+<tr><td>搜索和筛选文献</td><td>3-5天</td><td>数据库切换频繁，检索效率低</td></tr>
+<tr><td>精读核心文献</td><td>5-10天</td><td>信息量大，理解成本高</td></tr>
+<tr><td>整理笔记和分类</td><td>2-3天</td><td>手动整理易遗漏，难以规模化</td></tr>
+<tr><td>撰写综述初稿</td><td>3-5天</td><td>从零开始写，逻辑构建困难</td></tr>
+<tr><td>修改和完善</td><td>2-3天</td><td>格式、引用、连贯性反复调整</td></tr>
+</tbody>
+</table>
+
+<p><strong>总计：15-26天。</strong> 对于时间紧迫的研究生来说，这几乎是一个不可能完成的任务。</p>
+</section>
+
+<!-- Section 2 -->
+<section id="s2">
+<h2>二、AI如何改变文献综述的范式</h2>
+
+<p>AI在文献综述中的应用不是简单的"替代人工"，而是<strong>重构了整个工作流</strong>。</p>
+
+<h3>传统方式 vs AI辅助方式</h3>
+
+<table>
+<thead>
+<tr><th>环节</th><th>传统方式</th><th>AI辅助方式</th><th>效率提升</th></tr>
+</thead>
+<tbody>
+<tr><td>文献搜索</td><td>手动检索数据库</td><td>AI推荐相关文献</td><td>5-10倍</td></tr>
+<tr><td>文献筛选</td><td>逐篇看摘要</td><td>AI快速分类和评分</td><td>10-20倍</td></tr>
+<tr><td>信息提取</td><td>手动做笔记</td><td>AI自动提取关键信息</td><td>20-50倍</td></tr>
+<tr><td>文献分类</td><td>手动整理</td><td>AI自动聚类分组</td><td>10-30倍</td></tr>
+<tr><td>写作起草</td><td>从零开始写</td><td>AI生成初稿框架</td><td>5-10倍</td></tr>
+<tr><td>引用管理</td><td>手动格式化</td><td>AI自动管理</td><td>10-50倍</td></tr>
+</tbody>
+</table>
+
+<h3>AI在文献综述中的核心能力</h3>
+
+<ol>
+<li><strong>语义理解</strong>：理解论文的研究问题、方法、结论，不仅仅是关键词匹配</li>
+<li><strong>跨文献综合</strong>：从多篇论文中提取共同主题和矛盾观点</li>
+<li><strong>知识图谱构建</strong>：自动建立文献之间的引用关系和研究脉络</li>
+<li><strong>智能推荐</strong>：基于已有文献推荐相关新文献</li>
+<li><strong>写作辅助</strong>：生成符合学术规范的综述文本</li>
+</ol>
+</section>
+
+<!-- Section 3 -->
+<section id="s3">
+<h2>三、文献综述的完整流程与AI介入点</h2>
+
+<h3>第一步：明确综述范围和目标</h3>
+
+<p>在做任何事之前，先回答三个问题：</p>
+
+<ol>
+<li><strong>综述的目的是什么？</strong> 毕业论文？期刊投稿？课程作业？</li>
+<li><strong>时间范围？</strong> 近5年？近10年？还是从该领域诞生开始？</li>
+<li><strong>目标读者是谁？</strong> 该领域的专家？跨学科的学者？还是更广泛的读者？</li>
+</ol>
+
+<p>这三个问题的答案直接决定了你的AI工具选择和策略。</p>
+
+<p><strong>AI介入点：</strong> 用AI帮你明确研究问题。例如：</p>
+
+<blockquote>
+<p>"我正在研究'大语言模型在教育领域的应用'，请帮我细化为3-5个具体的研究子问题，每个子问题需要包含：核心概念、关键变量、可操作的定义。"</p>
+</blockquote>
+
+<h3>第二步：文献搜索与收集</h3>
+
+<p><strong>传统痛点：</strong> 在Google Scholar、Web of Science、CNKI等数据库之间反复切换，手动记录。</p>
+
+<p><strong>AI解决方案：</strong></p>
+
+<ul>
+<li><strong>语义搜索</strong>：用自然语言描述你的研究问题，AI自动匹配相关文献</li>
+<li><strong>智能推荐</strong>：基于种子文献，AI推荐更多相关论文</li>
+<li><strong>跨库聚合</strong>：AI工具自动从多个数据库收集文献</li>
+<li><strong>去重</strong>：自动识别和合并重复文献</li>
+</ul>
+
+<p><strong>推荐操作：</strong></p>
+
+<blockquote>
+<p>"请帮我搜索'大语言模型 教育 应用 2024-2026'相关的高被引论文，按影响力排序，排除综述类文章。"</p>
+</blockquote>
+
+<h3>第三步：文献筛选与分级</h3>
+
+<p><strong>这是AI最能发挥价值的环节之一。</strong></p>
+
+<p><strong>分级标准：</strong></p>
+
+<ul>
+<li><strong>🟢 核心文献（精读）</strong>：直接相关，方法可借鉴，对研究问题有直接贡献</li>
+<li><strong>🟡 重要文献（略读）</strong>：间接相关，提供背景或对比</li>
+<li><strong>🔴 参考文献（跳过）</strong>：相关性低，仅作为补充引用</li>
+</ul>
+
+<p><strong>用AI进行快速筛选：</strong></p>
+
+<ol>
+<li>将PDF批量导入AI论文工具（如Paper-Summarizer、ChatPDF）</li>
+<li>让AI为每篇论文生成结构化摘要</li>
+<li>根据摘要快速判断文献等级</li>
+<li>对核心文献进行二次深度分析</li>
+</ol>
+
+<h3>第四步：信息提取与笔记整理</h3>
+
+<p><strong>传统方式：</strong> 手动摘录关键信息，做高亮笔记，整理到Notion或OneNote。</p>
+
+<p><strong>AI辅助方式：</strong></p>
+
+<p><strong>核心信息自动提取清单：</strong></p>
+
+<ul>
+<li>研究问题（Research Question）</li>
+<li>研究方法（Methodology）</li>
+<li>数据来源（Data Source）</li>
+<li>核心发现（Key Findings）</li>
+<li>局限性（Limitations）</li>
+<li>与你的研究的相关性（Relevance to Your Work）</li>
+</ul>
+
+<p><strong>AI提取提示词模板：</strong></p>
+
+<blockquote>
+<p>"请提取这篇论文以下信息：1) 研究问题；2) 研究方法；3) 核心发现；4) 与'大语言模型在教育领域的应用'的相关性（高/中/低）；5) 关键引用建议。"</p>
+</blockquote>
+
+<h3>第五步：文献分类与知识图谱</h3>
+
+<p><strong>好的文献综述不是文献的简单堆砌，而是有逻辑的结构化呈现。</strong></p>
+
+<p><strong>常见分类方法：</strong></p>
+
+<ol>
+<li><strong>按时间线</strong>：展示某一主题的发展历程</li>
+<li><strong>按方法论</strong>：对比不同研究方法的优劣</li>
+<li><strong>按理论框架</strong>：基于不同理论视角的分类</li>
+<li><strong>按研究主题</strong>：将相关主题分组</li>
+<li><strong>按争议点</strong>：围绕某个争议的不同观点</li>
+</ol>
+
+<p><strong>AI在分类中的作用：</strong></p>
+
+<ul>
+<li>自动聚类相似文献</li>
+<li>识别文献间的引用关系</li>
+<li>发现研究脉络和知识演进</li>
+<li>推荐最佳的分类框架</li>
+</ul>
+
+<h3>第六步：撰写与引用管理</h3>
+
+<p><strong>这是最后一步，但往往是最耗时的。</strong></p>
+
+<p><strong>AI辅助写作流程：</strong></p>
+
+<ol>
+<li>基于AI整理的分类框架，生成综述大纲</li>
+<li>逐节用AI辅助撰写（每节聚焦一类文献）</li>
+<li>AI自动管理引用格式（APA、MLA、Chicago等）</li>
+<li>人工审核、修改、润色</li>
+</ol>
+</section>
+
+<!-- Section 4 -->
+<section id="s4">
+<h2>四、2026年最佳AI文献综述工具对比</h2>
+
+<h3>工具1：Paper-Summarizer</h3>
+
+<p><strong>核心优势：</strong> 专注论文摘要，速度快，准确率高。</p>
+<p><strong>适用场景：</strong> 快速了解论文核心内容，筛选文献。</p>
+<p><strong>亮点功能：</strong></p>
+<ul>
+<li>一键PDF摘要</li>
+<li>结构化信息提取</li>
+<li>多语言支持（中英日等）</li>
+<li>API集成</li>
+</ul>
+
+<h3>工具2：Scispace（原Typeset.io）</h3>
+
+<p><strong>核心优势：</strong> 学术搜索+AI摘要+问答一体。</p>
+<p><strong>适用场景：</strong> 需要同时搜索和阅读文献的场景。</p>
+<p><strong>亮点功能：</strong></p>
+<ul>
+<li>学术搜索引擎</li>
+<li>论文内问答</li>
+<li>文献推荐</li>
+<li>协作功能</li>
+</ul>
+
+<h3>工具3：Elicit</h3>
+
+<p><strong>核心优势：</strong> AI驱动的文献发现和分析。</p>
+<p><strong>适用场景：</strong> 从研究问题出发，自动发现和分析相关文献。</p>
+<p><strong>亮点功能：</strong></p>
+<ul>
+<li>自然语言搜索文献</li>
+<li>自动提取关键信息表格</li>
+<li>文献对比矩阵</li>
+<li>研究空白发现</li>
+</ul>
+
+<h3>工具4：Consensus</h3>
+
+<p><strong>核心优势：</strong> AI驱动的学术共识发现。</p>
+<p><strong>适用场景：</strong> 快速了解某个研究问题的现有共识和争议。</p>
+<p><strong>亮点功能：</strong></p>
+<ul>
+<li>AI回答研究问题</li>
+<li>证据等级评估</li>
+<li>观点对立分析</li>
+<li>一键导出</li>
+</ul>
+
+<h3>工具5：ChatPDF</h3>
+
+<p><strong>核心优势：</strong> 与PDF对话，快速定位信息。</p>
+<p><strong>适用场景：</strong> 深度阅读单篇论文，快速定位特定信息。</p>
+<p><strong>亮点功能：</strong></p>
+<ul>
+<li>PDF内问答</li>
+<li>关键段落高亮</li>
+<li>摘要生成</li>
+<li>多文件对比</li>
+</ul>
+
+<h3>工具对比总结</h3>
+
+<table>
+<thead>
+<tr><th>工具</th><th>文献搜索</th><th>摘要</th><th>问答</th><th>分类</th><th>引用管理</th><th>价格</th></tr>
+</thead>
+<tbody>
+<tr><td>Paper-Summarizer</td><td>❌</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐</td><td>⭐⭐⭐</td><td>⭐⭐</td><td>免费/付费</td></tr>
+<tr><td>Scispace</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐</td><td>⭐⭐⭐</td><td>免费/付费</td></tr>
+<tr><td>Elicit</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐</td><td>免费/付费</td></tr>
+<tr><td>Consensus</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐</td><td>⭐⭐</td><td>免费/付费</td></tr>
+<tr><td>ChatPDF</td><td>❌</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐</td><td>❌</td><td>免费/付费</td></tr>
+</tbody>
+</table>
+</section>
+
+<!-- Section 5 -->
+<section id="s5">
+<h2>五、实战：用AI写文献综述的六步工作流</h2>
+
+<p>下面以一个具体案例演示完整流程：<strong>"大语言模型在教育领域的应用"文献综述</strong>。</p>
+
+<h3>第1步：定义研究问题</h3>
+
+<pre><code>研究问题：大语言模型（LLM）在K-12教育中的应用现状、效果与挑战
+
+子问题：
+1. LLM在教育中的主要应用场景有哪些？
+2. 已有研究证明LLM对学习效果的影响如何？
+3. 教育领域使用LLM面临哪些伦理和隐私挑战？
+4. 教师和学生如何适应LLM带来的变化？</code></pre>
+
+<h3>第2步：文献收集</h3>
+
+<p><strong>操作：</strong> 使用Scispace或Elicit，输入研究问题，收集50-100篇相关文献。</p>
+
+<p><strong>筛选标准：</strong></p>
+
+<ul>
+<li>发表时间：2023-2026年</li>
+<li>类型：实证研究 &gt; 综述 &gt; 观点文章</li>
+<li>语言：中英文为主</li>
+<li>质量：期刊影响因子 &gt; 3 或会议top tier</li>
+</ul>
+
+<h3>第3步：文献分级</h3>
+
+<p><strong>用Paper-Summarizer批量处理：</strong></p>
+
+<ol>
+<li>将PDF导入Paper-Summarizer</li>
+<li>生成结构化摘要</li>
+<li>按以下标准分级：
+<ul>
+<li>直接回答子问题的 → 🟢 核心</li>
+<li>提供背景或对比的 → 🟡 重要</li>
+<li>仅部分相关的 → 🔴 参考</li>
+</ul>
+</li>
+</ol>
+
+<h3>第4步：信息提取</h3>
+
+<p><strong>对核心文献（约15-20篇）进行深度提取：</strong></p>
+
+<pre><code>提取字段：
+- 作者/年份/期刊
+- 研究设计（定量/定性/混合）
+- 样本规模和特征
+- LLM工具类型
+- 教育场景（课堂/自学/评估等）
+- 主要发现
+- 局限性</code></pre>
+
+<h3>第5步：构建综述框架</h3>
+
+<p><strong>基于AI分类结果，构建综述结构：</strong></p>
+
+<pre><code>一、引言
+  1.1 研究背景
+  1.2 研究问题
+  1.3 综述范围和方法
+
+二、LLM在教育中的主要应用场景
+  2.1 个性化学习
+  2.2 自动评估与反馈
+  2.3 辅助写作与创作
+  2.4 语言学习
+  2.5 教师辅助工具
+
+三、LLM教育应用的效果研究
+  3.1 学习效果实证研究
+  3.2 不同学段的效果差异
+  3.3 不同学科的效果差异
+
+四、挑战与伦理问题
+  4.1 学术诚信问题
+  4.2 数据隐私与安全
+  4.3 算法偏见与公平性
+  4.4 教师角色转变
+
+五、未来研究方向
+  5.1 技术层面
+  5.2 教育层面
+  5.3 政策层面
+
+六、结论</code></pre>
+
+<h3>第6步：逐节撰写</h3>
+
+<p><strong>逐节用AI辅助撰写，每节聚焦一个子主题：</strong></p>
+
+<p><strong>写作提示词模板：</strong></p>
+
+<blockquote>
+<p>"基于以下10篇文献的摘要和关键信息，请帮我撰写'LLM在教育中的个性化学习应用'部分的综述。要求：1) 按时间顺序组织；2) 对比不同研究的发现；3) 指出共识和争议；4) 标注每篇文献的引用。"</p>
+</blockquote>
+
+<p><strong>完成后的人工工作：</strong></p>
+
+<ul>
+<li>检查逻辑连贯性</li>
+<li>补充缺失的过渡</li>
+<li>调整学术语言</li>
+<li>确保引用格式正确</li>
+<li>删除AI生成的幻觉内容</li>
+</ul>
+</section>
+
+<!-- Section 6 -->
+<section id="s6">
+<h2>六、不同研究阶段的AI策略</h2>
+
+<h3>硕士论文文献综述</h3>
+
+<p><strong>特点：</strong> 篇幅适中（8000-15000字），时间紧迫（1-2个月）。</p>
+<p><strong>策略：</strong></p>
+<ul>
+<li>重点用AI快速筛选和提取信息</li>
+<li>核心文献控制在20-40篇</li>
+<li>用AI生成初稿框架，人工深度修改</li>
+<li>时间分配：AI处理70%，人工30%</li>
+</ul>
+
+<h3>博士论文文献综述</h3>
+
+<p><strong>特点：</strong> 篇幅大（20000-50000字），需要深度和广度。</p>
+<p><strong>策略：</strong></p>
+<ul>
+<li>用AI辅助但不过度依赖</li>
+<li>核心文献50-100篇，需要逐篇精读</li>
+<li>AI用于发现研究空白和知识图谱</li>
+<li>时间分配：AI处理40%，人工60%</li>
+</ul>
+
+<h3>期刊投稿文献综述</h3>
+
+<p><strong>特点：</strong> 篇幅精悍（5000-10000字），要求创新性和深度。</p>
+<p><strong>策略：</strong></p>
+<ul>
+<li>重点用AI发现研究空白和最新进展</li>
+<li>精选最具代表性的文献（20-40篇）</li>
+<li>AI帮助构建新颖的分类框架</li>
+<li>时间分配：AI处理50%，人工50%</li>
+</ul>
+</section>
+
+<!-- Section 7 -->
+<section id="s7">
+<h2>七、常见误区与避坑指南</h2>
+
+<h3>❌ 误区1：AI生成的内容可以直接用</h3>
+<p><strong>真相：</strong> AI可能生成幻觉引用或不准确的摘要。<strong>必须逐条核实。</strong></p>
+<p><strong>建议：</strong> 将AI输出视为"初稿草稿"而非"最终成果"。每篇引用都要回到原文确认。</p>
+
+<h3>❌ 误区2：用AI替代阅读，完全不读原文</h3>
+<p><strong>真相：</strong> AI摘要可能遗漏关键细节，尤其是方法部分的微妙之处。</p>
+<p><strong>建议：</strong> 至少精读核心文献的引言、方法和结论部分。AI摘要用于筛选和快速回顾，不可替代深度阅读。</p>
+
+<h3>❌ 误区3：把所有文献堆在一起，不做分类</h3>
+<p><strong>真相：</strong> 没有结构的文献综述 = 没有价值的文献综述。</p>
+<p><strong>建议：</strong> 在开始写作前，先用AI帮助构建清晰的分类框架。</p>
+
+<h3>❌ 误区4：过度依赖单一工具</h3>
+<p><strong>真相：</strong> 每个工具都有其擅长和不擅长的领域。</p>
+<p><strong>建议：</strong> 组合使用多个工具。例如：Elicit搜索 → Paper-Summarizer摘要 → ChatPDF深度阅读 → 人工整合。</p>
+
+<h3>❌ 误区5：忽视批判性思维</h3>
+<p><strong>真相：</strong> AI擅长总结，不擅长批判。文献综述的价值在于你的独立判断。</p>
+<p><strong>建议：</strong> 在每节综述中，加入你的分析和评价："这项研究的贡献是什么？局限在哪里？对我的研究有什么启示？"</p>
+
+<h3>❌ 误区6：引用格式混乱</h3>
+<p><strong>真相：</strong> 手动管理几十篇文献的引用格式是灾难。</p>
+<p><strong>建议：</strong> 使用Zotero或Mendeley等文献管理软件，配合AI工具自动格式化。</p>
+</section>
+
+<!-- Section 8 -->
+<section id="s8">
+<h2>八、常见问题解答</h2>
+
+<h3>Q1：AI写文献综述会被查重吗？</h3>
+<p><strong>答：</strong> AI生成的文本本身不会被查重系统标记为"抄袭"（因为不是直接复制），但如果内容质量差、逻辑混乱，审稿人会一眼识别。更重要的是，许多学术机构对AI辅助写作有明确规定，使用前需要了解所在机构的具体政策。</p>
+
+<h3>Q2：用AI写文献综述需要付费工具吗？</h3>
+<p><strong>答：</strong> 不一定。Paper-Summarizer、Elicit、Consensus等都有免费版本，对于个人研究者来说基本够用。但如果需要批量处理大量文献或API集成，付费版本会更有性价比。</p>
+
+<h3>Q3：AI能帮我发现研究空白吗？</h3>
+<p><strong>答：</strong> 可以辅助发现，但不能完全依赖。AI可以基于已有文献的模式，识别出"研究较少"的领域。但判断某个空白是否值得研究，需要你的领域知识和判断力。</p>
+
+<h3>Q4：文献综述中应该引用多少篇文献？</h3>
+<p><strong>答：</strong> 没有统一标准：</p>
+<ul>
+<li>硕士论文：20-50篇</li>
+<li>博士论文：50-150篇</li>
+<li>期刊综述：30-80篇</li>
+<li>会议论文：15-30篇</li>
+</ul>
+<p>关键是"相关且充分"，而非数量。</p>
+
+<h3>Q5：AI工具会不会泄露我的研究想法？</h3>
+<p><strong>答：</strong> 这是一个合理的担忧。建议：</p>
+<ul>
+<li>避免在公共AI工具中输入未发表的核心创新点</li>
+<li>使用支持隐私保护的工具（如本地部署方案）</li>
+<li>敏感信息脱敏后再输入</li>
+<li>了解工具的隐私政策</li>
+</ul>
+</section>
+
+<!-- Section 9 -->
+<section id="s9">
+<h2>九、总结</h2>
+
+<p>AI正在深刻改变文献综述的工作方式，但它不是魔法棒——<strong>它放大的是你的能力，而不是替代你的思考。</strong></p>
+
+<h3>核心要点回顾：</h3>
+
+<ol>
+<li><strong>AI在文献搜索、筛选、信息提取环节效率提升最明显</strong>（10-50倍）</li>
+<li><strong>写作和批判性分析仍需要大量人工投入</strong>（AI辅助而非替代）</li>
+<li><strong>组合使用多个工具比依赖单一工具效果更好</strong></li>
+<li><strong>每篇引用必须人工核实，防止幻觉</strong></li>
+<li><strong>文献综述的核心价值在于你的独立分析和判断</strong></li>
+</ol>
+
+<h3>行动建议：</h3>
+
+<ul>
+<li>如果你正在准备文献综述，先从<strong>明确研究问题</strong>开始</li>
+<li>用AI工具（如Paper-Summarizer）快速筛选和提取信息</li>
+<li>构建清晰的综述框架，再逐节撰写</li>
+<li>保持批判性思维，不要盲目接受AI的输出</li>
+</ul>
+
+<p><strong>记住：</strong> AI是强大的助手，但你是研究的主导者。用好AI，让文献综述从"最头疼的任务"变成"最有价值的发现之旅"。</p>
+</section>
+
+<div class="cta-box">
+<p>📌 需要高效的论文摘要工具？试试 <a href="https://paper-summarizer.vercel.app/">Paper-Summarizer</a> —— 上传PDF，秒获结构化摘要，让文献综述更高效。</p>
+</div>
+
+</div>
+
+<footer>
+<p>本文最后更新于 2026年5月11日</p>
+<p>© 2026 Paper Summarizer. 保留所有权利。</p>
+</footer>
+</body>
+</html>
