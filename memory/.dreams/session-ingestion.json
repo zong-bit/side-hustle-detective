@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "files": {
+    "crew-writer:sessions/crew-writer/2b0ffff1-8ddf-4a82-85f9-f4a701bb81ec.jsonl": {
+      "mtimeMs": 1778400106662,
+      "size": 23119,
+      "contentHash": "84786faad2d39fdee6e8ea8edcc3194fec9c7f9061e1548c43ca7905431952e8",
+      "lineCount": 4,
+      "lastContentLine": 4
+    }
+  },
+  "seenMessages": {
+    "crew-writer:2b0ffff1-8ddf-4a82-85f9-f4a701bb81ec": [
+      "3105873203b6ac8a66ee0d10123d48cb1e4768a7",
+      "0afabd2511bb9117237257855ea8b979f0a1eccb",
+      "7b639bab43861b32641e49d8b6e410b317e13adf",
+      "c8c13c5a3b7e2fefa532990c5925f019e78ee381"
+    ]
+  }
+}
