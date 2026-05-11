@@ -386,6 +386,26 @@ export default function Home() {
         ))}
       </div>
 
+      {/* Quick Entry */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 my-6">
+        <a href="/quiz" className="p-4 border border-[var(--border)] rounded-xl text-center hover:bg-[var(--bg-hover)] transition-colors">
+          <div className="text-2xl mb-1">🎯</div>
+          <div className="text-sm font-medium">副业匹配</div>
+        </a>
+        <a href="/calculator" className="p-4 border border-[var(--border)] rounded-xl text-center hover:bg-[var(--bg-hover)] transition-colors">
+          <div className="text-2xl mb-1">💰</div>
+          <div className="text-sm font-medium">收入计算</div>
+        </a>
+        <a href="/scam-check" className="p-4 border border-[var(--border)] rounded-xl text-center hover:bg-[var(--bg-hover)] transition-colors">
+          <div className="text-2xl mb-1">🔍</div>
+          <div className="text-sm font-medium">骗局检测</div>
+        </a>
+        <a href="/features" className="p-4 border border-[var(--border)] rounded-xl text-center hover:bg-[var(--bg-hover)] transition-colors">
+          <div className="text-2xl mb-1">📋</div>
+          <div className="text-sm font-medium">全部功能</div>
+        </a>
+      </div>
+
       {/* Daily Recommendation */}
       {recommend && <DailyRecommendCard recommend={recommend} onRefresh={fetchDailyRecommend} />}
 
