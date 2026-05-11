@@ -3,6 +3,41 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 
+const platformInfo = {
+  tieba: { name: '贴吧', bg: 'var(--accent-subtle)', color: 'var(--accent)', border: 'var(--accent-faint)' },
+  zhihu: { name: '知乎', bg: '#faf5ff', color: '#6b46c1', border: '#e9d8fd' },
+  xiaohongshu: { name: '小红书', bg: 'var(--danger-subtle)', color: 'var(--danger)', border: 'var(--danger-border)' },
+};
+
+function PlatformBadge({ platform }) {
+  const c = platformInfo[platform] || { name: platform, bg: 'var(--bg-subtle)', color: 'var(--fg-muted)', border: 'var(--border)' };
+  return (
+    <span className="badge" style={{ background: c.bg, color: c.color, boxShadow: `0 0 0 1px ${c.border}` }}>
+      {c.name}
+    </span>
+  );
+}
+
+function StatusBadge({ isScam, isLowQuality }) {
+  if (isScam) return <span className="badge badge-danger">⚠️ 需警惕</span>;
+  if (isLowQuality) return <span className="badge badge-warning">📰 低质</span>;
+  return <span className="badge badge-success">✅ 可信</span>;
+}
+
+function TrustBar({ score }) {
+  const getColor = (s) => s >= 60 ? 'var(--success)' : s >= 30 ? 'var(--warning)' : 'var(--danger)';
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+      <div className="progress-track" style={{ flex: 1 }}>
+        <div className="progress-fill" style={{ width: `${score}%`, background: getColor(score) }} />
+      </div>
+      <span style={{ fontSize: 13, fontWeight: 600, color: getColor(score), fontVariantNumeric: 'tabular-nums', letterSpacing: '-0.02em' }}>
+        {score}/100
+      </span>
+    </div>
+  );
+}
+
 export default function PostDetail() {
   const router = useRouter();
   const { id } = router.query;
@@ -17,15 +52,11 @@ export default function PostDetail() {
         const url = decodeURIComponent(atob(id));
         const res = await fetch('/api/posts');
         const allPosts = await res.json();
-        const found = allPosts.find(p => p.url === url);
+        const found = Array.isArray(allPosts) ? allPosts.find(p => p.url === url) : null;
         setPost(found || null);
-
-        // Find related posts (same platform or same scam status)
         if (found) {
-          const samePlatform = allPosts.filter(p =>
-            p.url !== url && p.platform === found.platform
-          ).slice(0, 5);
-          setRelated(samePlatform);
+          const same = allPosts.filter(p => p.url !== url && p.platform === found.platform).slice(0, 5);
+          setRelated(same);
         }
       } catch (e) {
         setPost(null);
@@ -35,189 +66,150 @@ export default function PostDetail() {
     load();
   }, [id]);
 
+  if (!id) return null;
+
   if (loading) {
     return (
-      <div style={{ maxWidth: 800, margin: '0 auto', padding: 20, fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif', textAlign: 'center', paddingTop: 100, color: '#999' }}>
-        加载中...
+      <div style={{ maxWidth: 700, margin: '0 auto', padding: '80px 24px 40px', textAlign: 'center', color: 'var(--fg-muted)', fontSize: 14 }}>
+        <Head><title>加载中 - 副业侦探</title></Head>
+        <div className="spinner" style={{ margin: '0 auto 16px' }} />
+        <div>加载中...</div>
       </div>
     );
   }
 
   if (!post) {
     return (
-      <div style={{ maxWidth: 800, margin: '0 auto', padding: 20, fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>
+      <div style={{ maxWidth: 700, margin: '0 auto', padding: '80px 24px 40px' }}>
         <Head><title>未找到 - 副业侦探</title></Head>
-        <div style={{ textAlign: 'center', paddingTop: 100 }}>
-          <h1 style={{ fontSize: 28, marginBottom: 16 }}>🤷 帖子未找到</h1>
-          <p style={{ color: '#666', marginBottom: 24 }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: 40, marginBottom: 16 }}>🤷</div>
+          <div style={{ fontSize: 18, fontWeight: 600, marginBottom: 8, letterSpacing: '-0.02em' }}>帖子未找到</div>
+          <p style={{ color: 'var(--fg-muted)', fontSize: 14, marginBottom: 32 }}>
             该帖子可能已被删除或链接错误
           </p>
-          <Link href="/" style={{ color: '#1a73e8', textDecoration: 'none', fontSize: 15 }}>
-            ← 返回首页
-          </Link>
+          <Link href="/" className="btn-primary">← 返回首页</Link>
         </div>
       </div>
     );
   }
 
-  const platformNames = { tieba: '贴吧', zhihu: '知乎', xiaohongshu: '小红书' };
-  const platformColors = { tieba: '#e3f2fd', zhihu: '#f3e5f5', xiaohongshu: '#fce4ec' };
-
-  const badgeText = post.is_scam ? '⚠️ 需警惕' : post.is_low_quality ? '📰 低质' : '✅ 可信';
-  const badgeColor = post.is_scam ? '#c62828' : post.is_low_quality ? '#f57f17' : '#2e7d32';
+  const plat = platformInfo[post.platform] || platformInfo.tieba;
 
   return (
-    <div style={{ maxWidth: 800, margin: '0 auto', padding: 20, fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>
+    <div style={{ maxWidth: 700, margin: '0 auto', padding: '40px 24px 48px' }}>
       <Head>
         <title>{post.title} - 副业侦探</title>
-        <meta name="description" content={`${post.title} - ${post.platform === 'tieba' ? '贴吧' : post.platform === 'zhihu' ? '知乎' : '小红书'}副业讨论，自动骗局检测结果`} />
+        <meta name="description" content={`${post.title} - ${plat.name}副业讨论`} />
         <meta property="og:title" content={`${post.title} - 副业侦探`} />
-        <meta property="og:description" content={`来自${platformNames[post.platform] || post.platform}的副业讨论，骗局预警分析`} />
+        <meta property="og:description" content={`来自${plat.name}的副业讨论，骗局预警分析`} />
         <meta property="og:type" content="article" />
       </Head>
 
-      {/* 返回导航 */}
-      <Link href="/" style={{ color: '#1a73e8', textDecoration: 'none', fontSize: 14, display: 'inline-flex', alignItems: 'center', gap: 4, marginBottom: 16 }}>
+      {/* Back link */}
+      <Link href="/" style={{ fontSize: 13, color: 'var(--fg-muted)', display: 'inline-flex', alignItems: 'center', gap: 4, marginBottom: 32 }}>
         ← 返回首页
       </Link>
 
-      {/* 主内容卡片 */}
-      <div style={{
-        background: 'white', borderRadius: 12, border: '1px solid #eee',
-        padding: 24, boxShadow: '0 1px 4px rgba(0,0,0,0.06)'
-      }}>
-        {/* 顶部标签 */}
-        <div style={{ display: 'flex', gap: 8, marginBottom: 12, alignItems: 'center' }}>
-          <span style={{
-            fontSize: 12, padding: '3px 10px', borderRadius: 6,
-            background: platformColors[post.platform] || '#f5f5f5', color: '#555'
-          }}>
-            {platformNames[post.platform] || post.platform}
-          </span>
+      {/* Main card */}
+      <div className="card" style={{ padding: '28px 32px 24px' }}>
+        {/* Badges row */}
+        <div style={{ display: 'flex', gap: 8, marginBottom: 20, alignItems: 'center', flexWrap: 'wrap' }}>
+          <StatusBadge isScam={post.is_scam} isLowQuality={post.is_low_quality} />
+          <PlatformBadge platform={post.platform} />
           {post.forum && (
-            <span style={{ fontSize: 12, padding: '3px 10px', borderRadius: 6, background: '#f5f5f5', color: '#555' }}>
-              {post.forum}
+            <span style={{ fontSize: 12, color: 'var(--fg-muted)' }}>
+              📌 {post.forum}
             </span>
           )}
-          <span style={{ fontSize: 13, color: badgeColor, fontWeight: 500, marginLeft: 'auto' }}>{badgeText}</span>
         </div>
 
-        {/* 可信度评分条 */}
-        <div style={{ marginBottom: 16 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
-            <span style={{ fontSize: 13, color: '#666' }}>可信度评分</span>
-            <span style={{
-              fontSize: 18, fontWeight: 600,
-              color: post.trust_score >= 60 ? '#2e7d32' : post.trust_score >= 30 ? '#f57f17' : '#c62828'
-            }}>
-              {post.trust_score}/100
-            </span>
+        {/* Trust score */}
+        <div style={{ marginBottom: 24 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+            <span style={{ fontSize: 12, color: 'var(--fg-muted)' }}>可信度评分</span>
           </div>
-          <div style={{ height: 8, background: '#eee', borderRadius: 4, overflow: 'hidden' }}>
-            <div style={{
-              height: '100%', borderRadius: 4,
-              width: `${post.trust_score}%`,
-              background: post.trust_score >= 60 ? '#43a047' : post.trust_score >= 30 ? '#ffa000' : '#e53935',
-              transition: 'width 0.3s ease'
-            }} />
-          </div>
+          <TrustBar score={post.trust_score} />
         </div>
 
-        {/* 标题 */}
-        <h1 style={{ fontSize: 22, fontWeight: 600, margin: '0 0 12px 0', lineHeight: 1.4, color: '#222' }}>
+        {/* Title */}
+        <h1 style={{ fontSize: 24, fontWeight: 600, marginBottom: 12, lineHeight: 1.3, letterSpacing: '-0.02em' }}>
           {post.title}
         </h1>
 
-        {/* 作者信息 */}
-        <div style={{ fontSize: 13, color: '#888', marginBottom: 16, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+        {/* Author info */}
+        <div style={{ fontSize: 13, color: 'var(--fg-muted)', marginBottom: 24, display: 'flex', gap: 16, flexWrap: 'wrap' }}>
           <span>👤 {post.author}</span>
-          <span>🕐 {post.time}</span>
+          <span style={{ fontVariantNumeric: 'tabular-nums' }}>🕐 {post.time}</span>
         </div>
 
-        {/* 骗局预警 */}
+        {/* Scam warnings */}
         {post.warnings && post.warnings.length > 0 && (
-          <div style={{
-            background: '#fff5f5', border: '1px solid #ffcdd2', borderRadius: 8,
-            padding: 16, marginBottom: 20
-          }}>
-            <h3 style={{ margin: '0 0 8px 0', fontSize: 15, color: '#c62828', display: 'flex', alignItems: 'center', gap: 6 }}>
+          <div style={{ padding: 16, marginBottom: 24, background: 'var(--danger-subtle)', boxShadow: '0 0 0 1px var(--danger-border)' }}>
+            <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--danger)', marginBottom: 10 }}>
               🚩 骗局预警
-            </h3>
+            </div>
             <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
               {post.warnings.map((w, j) => (
-                <span key={j} style={{
-                  fontSize: 13, padding: '4px 10px', borderRadius: 6,
-                  background: '#ffebee', color: '#c62828', border: '1px solid #ffcdd2', fontWeight: 500
-                }}>
+                <span key={j} className="badge" style={{ background: 'var(--danger-subtle)', color: 'var(--danger)' }}>
                   ⚠️ {w}
                 </span>
               ))}
             </div>
-            <div style={{ marginTop: 12, fontSize: 13, color: '#666', lineHeight: 1.6 }}>
-              <strong>检测说明：</strong>以上预警基于关键词规则自动识别，仅供参考。
-              具体以帖子实际内容为准，请自行判断。
+            <div style={{ marginTop: 12, fontSize: 13, color: 'var(--fg-muted)', lineHeight: 1.6 }}>
+              <strong>检测说明：</strong>以上预警基于关键词规则自动识别，仅供参考。具体以帖子实际内容为准，请自行判断。
             </div>
           </div>
         )}
 
-        {/* 正文内容 */}
+        {/* Content */}
         {post.snippet && (
-          <div style={{
-            fontSize: 15, lineHeight: 1.8, color: '#333',
-            padding: '16px 0', borderTop: '1px solid #eee',
-            whiteSpace: 'pre-wrap', wordBreak: 'break-word'
-          }}>
+          <div style={{ fontSize: 15, lineHeight: 1.8, color: 'var(--fg)', padding: '20px 0', borderTop: '1px solid var(--border)', whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
             {post.snippet}
           </div>
         )}
 
-        {/* 原始链接 */}
-        <div style={{ marginTop: 20, paddingTop: 16, borderTop: '1px solid #eee' }}>
+        {/* Original link */}
+        <div style={{ marginTop: 24, paddingTop: 16, borderTop: '1px solid var(--border)' }}>
           <a
             href={post.url}
             target="_blank"
             rel="noopener noreferrer"
-            style={{
-              display: 'inline-block', padding: '10px 20px', borderRadius: 8,
-              background: '#1a73e8', color: 'white', textDecoration: 'none',
-              fontSize: 14, fontWeight: 500
-            }}
+            className="btn-primary"
           >
             🔗 查看原文
           </a>
         </div>
       </div>
 
-      {/* 相关推荐 */}
+      {/* Related */}
       {related.length > 0 && (
-        <div style={{ marginTop: 32 }}>
-          <h3 style={{ fontSize: 16, color: '#444', marginBottom: 12 }}>
-            📌 同平台推荐（{platformNames[post.platform] || post.platform}）
-          </h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <div style={{ marginTop: 40 }}>
+          <div style={{ fontSize: 13, fontWeight: 500, color: 'var(--fg-muted)', marginBottom: 16, letterSpacing: '0.02em' }}>
+            同平台推荐（{plat.name}）
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
             {related.map((r, i) => (
               <Link
                 key={i}
                 href={`/posts/${btoa(encodeURIComponent(r.url))}`}
+                className="card"
                 style={{
-                  display: 'block', padding: '12px 16px', borderRadius: 8,
-                  border: '1px solid #eee', textDecoration: 'none',
-                  color: '#333', fontSize: 14, transition: 'background 0.2s',
-                  background: 'white'
+                  padding: '14px 20px',
+                  borderRadius: 0,
+                  textDecoration: 'none',
+                  color: 'inherit',
+                  borderLeft: r.is_scam ? '3px solid var(--danger)' : '3px solid var(--accent)',
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-                  <span style={{
-                    fontSize: 11, padding: '1px 6px', borderRadius: 4,
-                    background: r.is_scam ? '#ffebee' : '#e8f5e9',
-                    color: r.is_scam ? '#c62828' : '#2e7d32'
-                  }}>
-                    {r.is_scam ? '⚠️' : '✅'}
+                  <StatusBadge isScam={r.is_scam} isLowQuality={r.is_low_quality} />
+                  <span style={{ fontSize: 14, fontWeight: 500, letterSpacing: '-0.01em' }}>
+                    {r.title}
                   </span>
-                  <span style={{ fontWeight: 500 }}>{r.title}</span>
                 </div>
-                <div style={{ fontSize: 12, color: '#999' }}>
-                  {r.author} · {r.time}
+                <div style={{ fontSize: 12, color: 'var(--fg-faint)' }}>
+                  {r.author} · <span style={{ fontVariantNumeric: 'tabular-nums' }}>{r.time}</span>
                 </div>
               </Link>
             ))}
