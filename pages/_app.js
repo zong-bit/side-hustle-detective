@@ -12,6 +12,12 @@ export default function App({ Component, pageProps }) {
         <meta name="keywords" content="副业,兼职,赚钱,防骗,副业推荐,AI副业,在家赚钱,学生兼职,宝妈副业" />
         <meta property="og:site_name" content="副业侦探" />
         <meta property="og:locale" content="zh_CN" />
+        <meta property="og:image" content="https://side-hustle-detective.vercel.app/og-image.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="副业侦探" />
+        <meta name="twitter:description" content="AI时代的副业赚钱指南，帮你找到最适合你的第二收入来源" />
         <link rel="canonical" href="https://side-hustle-detective.vercel.app/" />
         <link rel="alternate" hrefLang="zh-Hans" href="https://side-hustle-detective.vercel.app/" />
         <script

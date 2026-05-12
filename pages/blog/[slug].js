@@ -72,6 +72,9 @@ export default function BlogDetail() {
         <meta property="og:description" content={post.excerpt || `${post.title}`} />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={`${SITE_URL}/blog/${slug}`} />
+        <meta property="og:image" content={`${SITE_URL}/og-image.png`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         <link rel="canonical" href={`${SITE_URL}/blog/${slug}`} />
         <link rel="alternate" hrefLang="zh-Hans" href={`${SITE_URL}/blog/${slug}`} />
         {post.date && <meta property="article:published_time" content={post.date} />}
