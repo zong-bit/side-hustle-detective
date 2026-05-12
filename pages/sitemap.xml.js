@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const BASE_URL = 'https://fuye-seo.vercel.app';
+const BASE_URL = 'https://side-hustle-detective.vercel.app';
 
 const CATEGORIES = ['online', 'offline', 'content', 'skill', 'social'];
 
@@ -62,13 +62,23 @@ export async function getServerSideProps({ res }) {
     }
   } catch (e) {}
 
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  const currentDate = '2026-05-12';
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>${BASE_URL}/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="${BASE_URL}/" />
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>${currentDate}</lastmod>
+  </url>
+  <url>
+    <loc>${BASE_URL}/blog</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="${BASE_URL}/blog" />
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <lastmod>${currentDate}</lastmod>
   </url>
   <url>
     <loc>${BASE_URL}/about</loc>
@@ -78,7 +88,12 @@ export async function getServerSideProps({ res }) {
   <url>
     <loc>${BASE_URL}/privacy</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>${BASE_URL}/features</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
   </url>
   ${CATEGORIES.map(cat => `
   <url>
@@ -95,6 +110,7 @@ export async function getServerSideProps({ res }) {
   ${blogUrls.map(b => `
   <url>
     <loc>${b.loc}</loc>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="${b.loc}" />
     <lastmod>${b.lastmod}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

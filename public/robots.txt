@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://fuye-seo.vercel.app/sitemap.xml
+Sitemap: https://side-hustle-detective.vercel.app/sitemap.xml
+
+# Google Search Console 验证文件（如已配置替换下方占位）
+# 将 googleXXXXX.html 中的 XXXXX 替换为 GSC 提供的验证码

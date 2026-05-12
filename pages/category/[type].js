@@ -90,6 +90,9 @@ export default function CategoryPage() {
         <title>{category.name}副业推荐 - 副业侦探</title>
         <meta name="description" content={`${category.name}副业信息聚合 - ${category.desc}。自动骗局检测，安全可靠。`} />
         <meta name="keywords" content={`${category.name},副业,${category.name}副业,副业推荐,防骗`} />
+        <meta property="og:url" content={`https://side-hustle-detective.vercel.app/category/${type}`} />
+        <link rel="canonical" href={`https://side-hustle-detective.vercel.app/category/${type}`} />
+        <link rel="alternate" hrefLang="zh-Hans" href={`https://side-hustle-detective.vercel.app/category/${type}`} />
       </Head>
 
       {/* Back link */}

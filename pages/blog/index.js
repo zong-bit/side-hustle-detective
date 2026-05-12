@@ -61,8 +61,12 @@ export default function BlogIndex() {
       <Head>
         <title>阅读 · 副业侦探博客</title>
         <meta name="description" content="副业方法、AI工具、效率提升 —— 副业侦探的原创内容。副业不再盲目，从读到做。"/>
+        <meta name="keywords" content="副业博客,副业方法,AI工具,效率提升,副业侦探,赚钱攻略" />
         <meta property="og:title" content="阅读 · 副业侦探" />
         <meta property="og:description" content="副业方法、AI工具、效率提升 —— 副业侦探的原创内容。" />
+        <meta property="og:url" content="https://side-hustle-detective.vercel.app/blog" />
+        <link rel="canonical" href="https://side-hustle-detective.vercel.app/blog" />
+        <link rel="alternate" hrefLang="zh-Hans" href="https://side-hustle-detective.vercel.app/blog" />
       </Head>
 
       {/* Back link */}

@@ -275,11 +275,13 @@ export default function Home({ initialPosts = [], totalCount = 0, lastUpdate: in
     <div style={{ maxWidth: 900, margin: '0 auto', padding: '40px 24px 48px' }}>
       <Head>
         <title>副业侦探 - 副业信息聚合与防骗检测</title>
-        <meta name="description" content="副业侦探 - 聚合全网副业信息，发现靠谱副业项目，防骗指南与赚钱攻略" />
-        <meta name="keywords" content="副业,兼职,赚钱,防骗,贴吧副业,知乎副业,小红书副业" />
+        <meta name="description" content="副业侦探 - 聚合全网副业信息，发现靠谱副业项目，防骗指南与赚钱攻略。自动甄别贴吧、知乎、小红书副业骗局。" />
+        <meta name="keywords" content="副业,兼职,赚钱,防骗,贴吧副业,知乎副业,小红书副业,副业推荐,在家赚钱" />
         <meta property="og:title" content="副业侦探 - 副业信息聚合与防骗检测" />
         <meta property="og:description" content="聚合贴吧、知乎、小红书的副业讨论，AI 关键词辅助甄别骗局。" />
+        <meta property="og:url" content="https://side-hustle-detective.vercel.app/" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="canonical" href="https://side-hustle-detective.vercel.app/" />
       </Head>
 
       {/* Header */}
@@ -539,7 +541,7 @@ export default function Home({ initialPosts = [], totalCount = 0, lastUpdate: in
                 <span className="badge" style={{ background: '#ede9fe', color: '#6d28d9', border: '1px solid #ddd6fe' }}>⚡ 效率提升</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
-                <span style={{ fontSize: 22, fontWeight: 700, color: 'var(--accent)', letterSpacing: '-0.02em' }}>¥19.9</span>
+                <span style={{ fontSize: 22, fontWeight: 700, color: 'var(--accent)', letterSpacing: '-0.02em' }}>¥9.9</span>
                 <span style={{ fontSize: 12, color: 'var(--fg-faint)' }}>一次性购买 · 持续更新</span>
               </div>
             </div>
@@ -551,7 +553,7 @@ export default function Home({ initialPosts = [], totalCount = 0, lastUpdate: in
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>✅ 持续更新迭代</div>
               </div>
               <a
-                href="https://afdian.com/item/xxxx"
+                href="/purchase"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{

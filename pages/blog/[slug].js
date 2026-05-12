@@ -4,6 +4,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { marked } from 'marked';
 
+const SITE_URL = 'https://side-hustle-detective.vercel.app';
+
 // Configure marked for safety and code highlighting
 marked.setOptions({
   breaks: true,
@@ -69,7 +71,13 @@ export default function BlogDetail() {
         <meta property="og:title" content={`${post.title} - 副业侦探`} />
         <meta property="og:description" content={post.excerpt || `${post.title}`} />
         <meta property="og:type" content="article" />
+        <meta property="og:url" content={`${SITE_URL}/blog/${slug}`} />
+        <link rel="canonical" href={`${SITE_URL}/blog/${slug}`} />
+        <link rel="alternate" hrefLang="zh-Hans" href={`${SITE_URL}/blog/${slug}`} />
         {post.date && <meta property="article:published_time" content={post.date} />}
+        {post.tags && post.tags.map((tag, i) => (
+          <meta key={i} property="article:tag" content={tag} />
+        ))}
       </Head>
 
       {/* Back link */}
