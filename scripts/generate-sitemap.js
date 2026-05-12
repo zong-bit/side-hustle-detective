@@ -71,6 +71,8 @@ try {
   console.error('Error reading blog posts:', e.message);
 }
 
+// console.log(`   Blog articles: ${blogFiles ? blogFiles.length : 0}`);
+
 // 4. Data posts from data/ directory
 const dataDir = path.join(__dirname, '..', 'data');
 try {
