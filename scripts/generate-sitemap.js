@@ -123,4 +123,3 @@ const outPath = path.join(__dirname, '..', 'sitemap-audit.xml');
 fs.writeFileSync(outPath, sitemap, 'utf-8');
 console.log(`✅ sitemap audit generated with ${urls.length} URLs`);
 console.log(`   Output: ${outPath}`);
-console.log(`   Blog articles: ${blogFiles ? blogFiles.length : 0}`);

@@ -62,7 +62,7 @@ export async function getServerSideProps({ res }) {
     }
   } catch (e) {}
 
-  const currentDate = '2026-05-12';
+  const currentDate = '2026-05-13';
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
