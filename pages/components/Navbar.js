@@ -98,6 +98,7 @@ export default function Navbar() {
                   { href: '/calculator', label: '💰 收入计算', desc: '估算你的副业收入' },
                   { href: '/scam-check', label: '🛡️ 骗局检测', desc: '检测副业链接是否安全' },
                   { href: '/converter', label: '📊 收入换算', desc: '时薪自动换算日/月/年薪' },
+                  { href: '/prompt-tool', label: '🎓 Prompt工具', desc: '50个科研AI提示词' },
                 ].map(item => (
                   <Link
                     key={item.href}
