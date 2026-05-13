@@ -20,6 +20,17 @@ export default function Purchase() {
         <div className="flex items-center gap-3 p-3 bg-green-500/10 rounded-xl text-sm">✅ 50个Prompt覆盖全部科研场景</div>
       </div>
 
+      {/* 产品预览 */}
+      <div className="mb-8 p-4 bg-gray-50 rounded-xl border border-gray-200">
+        <div className="text-sm font-medium text-gray-600 mb-3">📋 部分Prompt预览</div>
+        <div className="space-y-2 text-xs text-gray-500 font-mono">
+          <div className="p-2 bg-white rounded border">🔬 <strong>论文摘要生成：</strong>"请作为学术研究员，对以下论文生成结构化摘要..."</div>
+          <div className="p-2 bg-white rounded border">🔄 <strong>改写润色：</strong>"请帮我改写以下段落，保持原意但提升学术表达..."</div>
+          <div className="p-2 bg-white rounded border">📄 <strong>论文结构规划：</strong>"请为以下研究主题设计论文大纲..."</div>
+        </div>
+        <div className="text-xs text-gray-400 mt-2">购买后可获取全部50个Prompt 🎁</div>
+      </div>
+
       {!showDownload ? (
         <>
           <a href="https://ifdian.net/item/566dd4464d3111f1bd1352540025c377" target="_blank"
@@ -47,6 +58,15 @@ export default function Purchase() {
           <p className="text-xs text-text-secondary">购买后永久可用，支持所有主流AI工具</p>
         </div>
       )}
+
+      {/* 售后支持 */}
+      <div className="mt-8 pt-6 border-t border-gray-200">
+        <div className="text-center text-sm text-text-secondary">
+          <div className="font-medium mb-2">📧 售后支持</div>
+          <div>使用中遇到问题？联系 <a href="mailto:zxw@example.com" className="text-primary hover:underline">zxw@example.com</a></div>
+          <div className="mt-1 text-xs">或访问 <a href="https://github.com/zxw/prompt-collection/issues" target="_blank" rel="noopener" className="text-primary hover:underline">GitHub Issues</a></div>
+        </div>
+      </div>
     </div></div>
   );
 }

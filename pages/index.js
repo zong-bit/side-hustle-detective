@@ -541,7 +541,7 @@ export default function Home({ initialPosts = [], totalCount = 0, lastUpdate: in
                 <span className="badge" style={{ background: '#ede9fe', color: '#6d28d9', border: '1px solid #ddd6fe' }}>⚡ 效率提升</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
-                <span style={{ fontSize: 22, fontWeight: 700, color: 'var(--accent)', letterSpacing: '-0.02em' }}>¥9.9</span>
+                <span style={{ fontSize: 22, fontWeight: 700, color: 'var(--accent)', letterSpacing: '-0.02em' }}>¥19.9</span>
                 <span style={{ fontSize: 12, color: 'var(--fg-faint)' }}>一次性购买 · 持续更新</span>
               </div>
             </div>

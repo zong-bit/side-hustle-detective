@@ -131,6 +131,15 @@ export default function Navbar() {
           <Link href="/about" style={navLinkStyle}>
             关于
           </Link>
+
+          {/* 购买 - 数字产品入口 */}
+          <Link href="/purchase" style={{
+            ...navLinkStyle,
+            color: 'var(--accent)',
+            fontWeight: 600,
+          }}>
+            🛒 购买
+          </Link>
         </div>
       </div>
     </nav>
