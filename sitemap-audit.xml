@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://side-hustle-detective.vercel.app/</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-05-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -794,6 +794,42 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://side-hustle-detective.vercel.app/blog/01-2026年副业ai工具推荐-最新免费与付费工具大盘点</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/blog/02-副业时间管理-上班族如何利用碎片时间做副业</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/blog/ai写作副业实操-从零基础到月入3000的完整指南</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/blog/副业起步指南-2026年普通人最适合的3个方向</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/blog/跨境电商副业-2026年普通人怎么做tiktok和temu</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/blog/闲鱼卖货全攻略-从0到月入5000的实操步骤</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://side-hustle-detective.vercel.app/blog/2026-ai-cross-border-e-commerce-side-hustle-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -814,12 +850,24 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://side-hustle-detective.vercel.app/blog/ai-painting-side-hustle-guide-2026</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://side-hustle-detective.vercel.app/blog/ai-tools-for-beginners</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://side-hustle-detective.vercel.app/blog/paper-summarizer-介绍</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/blog/work-life-side-hustle-time-management</loc>
+    <lastmod>2026-05-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -834,17 +882,12 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjF4ZTlmQmtFTHUlMkY=</loc>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjEyUzVLNlBFWWQlMkY=</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFld3FmQjJFUVYlMkY=</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFyVDR5MVU3amUlMkY=</loc>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFlcERrQk5FTkslMkY=</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -854,7 +897,12 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjF0R1JzQlhFQlYlMkY=</loc>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFyVDR5MVU3amUlMkY=</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFld3FmQjJFUVYlMkY=</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -864,17 +912,12 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFiaFA0ekRFcXUlMkY=</loc>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjE4WjVqNkJFbUMlMkY=</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFIczlEQjJFcEElMkY=</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjE4ZXNVZTNFb28lMkY=</loc>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFZcjVrNkxFY0slMkY=</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -884,77 +927,32 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjE1THoxQjdFNlYlMkY=</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFmOVpvWUxFNUQlMkY=</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFrY2lTQmFFdTYlMkY=</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFlMzJwQlRFM0YlMkY=</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjF3RU50emtFQXElMkY=</loc>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjF6eDlVQk1FUzQlMkY=</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFzaDR5MVA3bUElMkY=</loc>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjF3OGJYenlFU2UlMkY=</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFQY3lBQnhFTlMlMkY=</loc>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFYRjdoenZFWFQlMkY=</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFYS1JzQm9FeG8lMkY=</loc>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjEySDU1NnNFNHclMkY=</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFlMzR5MTY3eFQlMkY=</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjF6VjR5MUY3c3MlMkY=</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFHVGRnQjlFejMlMkY=</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFwYTR5MW03eU4lMkY=</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFncjQyMTM3eUIlMkY=</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjE3UWVkelJFbm8lMkY=</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFiYTR5MW03b3glMkY=</loc>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjE0YXdWZWpFREYlMkY=</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -964,7 +962,57 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFCSFJEQmtFclolMkY=</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFITTR5MUc3NHglMkY=</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFraDU1NkVFM2YlMkY=</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFRSzVHNm9FdXIlMkY=</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFDUDczemNFdnQlMkY=</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFQdnoxQmVFZTclMkY=</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFyVFJHQkJFVlolMkY=</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFKTTVSNjRFR2MlMkY=</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFiYTR5MW03b3glMkY=</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjF4dFlQenhFeUIlMkY=</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFncjQyMTM3eUIlMkY=</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -985,6 +1033,11 @@
   </url>
   <url>
     <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFuWmlaQnhFa0UlMkY=</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFmOVpvWUxFNUQlMkY=</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1024,6 +1077,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjE1THoxQjdFNlYlMkY=</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFxdGROWXNFZVUlMkY=</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -1040,6 +1098,106 @@
   </url>
   <url>
     <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZ3d3cuYmlsaWJpbGkuY29tJTJGdmlkZW8lMkZCVjFmMzVWenBFbnMlMkY=</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZiYnMuaHVwdS5jb20lMkY2MzkyNzU0MDUuaHRtbA==</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZiYnMuaHVwdS5jb20lMkY2MzkyODc3MDMuaHRtbA==</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZiYnMuaHVwdS5jb20lMkY2MzkyODM0MTcuaHRtbA==</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZiYnMuaHVwdS5jb20lMkY2MzkyMDQwODYuaHRtbA==</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZiYnMuaHVwdS5jb20lMkY2MzkyNDkyNTQuaHRtbA==</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZiYnMuaHVwdS5jb20lMkY2MzkyNTk2NzYuaHRtbA==</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZiYnMuaHVwdS5jb20lMkY2MzkyNTkyODAuaHRtbA==</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZiYnMuaHVwdS5jb20lMkY2MzkyMjUyMzYuaHRtbA==</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZiYnMuaHVwdS5jb20lMkY2MzkyMjMwMjUuaHRtbA==</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZiYnMuaHVwdS5jb20lMkY2MzkxODgzODMuaHRtbA==</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZiYnMuaHVwdS5jb20lMkY2MzkyODk4ODYuaHRtbA==</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZiYnMuaHVwdS5jb20lMkY2MzkyNjc4ODEuaHRtbA==</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZiYnMuaHVwdS5jb20lMkY2MzkyNzY2MzMuaHRtbA==</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZiYnMuaHVwdS5jb20lMkY2MzkxOTgxNzUuaHRtbA==</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZiYnMuaHVwdS5jb20lMkY2MzkwNTk4NzMuaHRtbA==</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZiYnMuaHVwdS5jb20lMkY2MzkwNjk0OTQuaHRtbA==</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZiYnMuaHVwdS5jb20lMkY2MzkyODg4OTEuaHRtbA==</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZiYnMuaHVwdS5jb20lMkY2MzkyODYxODMuaHRtbA==</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZiYnMuaHVwdS5jb20lMkY2MzkyNTQwOTQuaHRtbA==</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZiYnMuaHVwdS5jb20lMkY2MzkyNDIxNjQuaHRtbA==</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1104,32 +1262,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZiYnMuaHVwdS5jb20lMkY2Mzg2MDkwOTIuaHRtbA==</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZiYnMuaHVwdS5jb20lMkY2Mzg4NDMyODQuaHRtbA==</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZiYnMuaHVwdS5jb20lMkY2Mzg4MzE0NjYuaHRtbA==</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZiYnMuaHVwdS5jb20lMkY2MzkwNzQ1MTIuaHRtbA==</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZiYnMuaHVwdS5jb20lMkY2Mzg5MDcyMTcuaHRtbA==</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://side-hustle-detective.vercel.app/posts/aHR0cHMlM0ElMkYlMkZiYnMuaHVwdS5jb20lMkY2Mzg4MjI1MjQuaHRtbA==</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
